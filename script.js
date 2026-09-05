@@ -276,17 +276,17 @@ function finishQuiz() {
     .sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total))[0];
 
   if (passed) {
-    resultStatus.textContent = "Aprovado";
+    resultStatus.textContent = "Aprovado!";
     resultStatus.className = "result-status passed";
     if (resultMessage) resultMessage.textContent = percent >= 90
-      ? "Desempenho sólido. Você está pronto para a prova oficial."
-      : "Você passou da nota mínima. Revise os pontos abaixo antes da prova oficial.";
+      ? "Desempenho sólido 🏆. Thaíse, você está pronto(a) para a prova oficial."
+      : "Thaíse, você passou da nota mínima 😳. Revise os pontos abaixo antes da prova oficial 📚.";
   } else {
-    resultStatus.textContent = "Reprovado";
+    resultStatus.textContent = "Reprovado!";
     resultStatus.className = "result-status failed";
     if (resultMessage) resultMessage.textContent = weakest
-      ? `Faltaram ${MIN_PASS_SCORE - score} acertos para a aprovação. ${weakest[0]} foi o ponto mais fraco — vale revisar antes de tentar de novo.`
-      : `Faltaram ${MIN_PASS_SCORE - score} acertos para a aprovação. Vale revisar o conteúdo antes de tentar de novo.`;
+      ? `Faltaram ${MIN_PASS_SCORE - score} acertos para a aprovação. ${weakest[0]} foi o ponto mais fraco — Thaíse, revise antes de tentar de novo 📚.`
+      : `Faltaram ${MIN_PASS_SCORE - score} acertos para a aprovação. Thaíse, revise o conteúdo antes de tentar de novo 📚.`;
   }
 
   document.getElementById('score-text').textContent = `${score}/${questions.length}`;
@@ -319,6 +319,7 @@ renderQuotaBreakdown();
 // Mantém o conteúdo das provas totalmente separado da lógica do app:
 // para adicionar/editar questões basta regenerar esse arquivo (ex.: via um
 // script Python de extração), sem tocar em script.js.
+
 async function loadQuestionBank() {
   try {
     const response = await fetch('questions.json');
