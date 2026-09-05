@@ -1,0 +1,393 @@
+[
+  {
+    "id": 1,
+    "category": "Legislação",
+    "text": "A placa de sinalização de regulamentação R-1 indica ao condutor:",
+    "placaId": "R-1",
+    "options": [
+      "Parada obrigatória à frente",
+      "Parada obrigatória",
+      "Dê a preferência",
+      "Diminua a velocidade"
+    ],
+    "correct": 1,
+    "explanation": "A placa R-1 determina a Parada Obrigatória no local da sinalização."
+  },
+  {
+    "id": 2,
+    "category": "Legislação",
+    "text": "Qual é a infração cometida pelo condutor que atira veículos ou partículas de água contra pedestres?",
+    "options": [
+      "Infração leve, sem pontos",
+      "Infração média, sujeita a multa",
+      "Infração grave, com retenção",
+      "Não constitui infração"
+    ],
+    "correct": 1,
+    "explanation": "Usar o veículo para arremessar água ou detritos sobre pedestres é infração média (Art. 171 do CTB)."
+  },
+  {
+    "id": 3,
+    "category": "Legislação",
+    "text": "A carteira nacional de habilitação (CNH) da categoria B permite dirigir veículos cujo peso bruto total não exceda a:",
+    "options": [
+      "2.500 kg",
+      "3.500 kg",
+      "4.500 kg",
+      "6.000 kg"
+    ],
+    "correct": 1,
+    "explanation": "A categoria B habilita para veículos cujo peso bruto total (PBT) não exceda a 3.500 kg."
+  },
+  {
+    "id": 4,
+    "category": "Legislação",
+    "text": "A validade da CNH para condutores com idade inferior a 50 anos é de até:",
+    "options": [
+      "3 anos",
+      "5 anos",
+      "10 anos",
+      "Indeterminada"
+    ],
+    "correct": 2,
+    "explanation": "Conforme o CTB atualizado, a CNH tem validade de até 10 anos para condutores com menos de 50 anos."
+  },
+  {
+    "id": 5,
+    "category": "Legislação",
+    "text": "Ultrapassar outro veículo pelo acostamento é uma infração de natureza:",
+    "options": [
+      "Leve",
+      "Média",
+      "Grave",
+      "Gravíssima"
+    ],
+    "correct": 3,
+    "explanation": "Ultrapassar pelo acostamento é infração gravíssima com multa (multiplicada por 5)."
+  },
+  {
+    "id": 6,
+    "category": "Legislação",
+    "text": "Ao transitar com o veículo sob chuva intensa, cerração ou neblina, o condutor deve manter acesas:",
+    "options": [
+      "Luzes de posição apenas",
+      "Luzes de farol alto",
+      "Luzes de farol baixo",
+      "Luzes do pisca-alerta"
+    ],
+    "correct": 2,
+    "explanation": "O condutor deve manter acesas ao menos as luzes de farol baixo em condições de baixa visibilidade."
+  },
+  {
+    "id": 7,
+    "category": "Legislação",
+    "text": "Onde não houver sinalização regulamentadora, a velocidade máxima nas vias urbanas de trânsito rápido é de:",
+    "options": [
+      "60 km/h",
+      "80 km/h",
+      "90 km/h",
+      "110 km/h"
+    ],
+    "correct": 1,
+    "explanation": "Nas vias urbanas de trânsito rápido não sinalizadas, o limite estabelecido pelo CTB é 80 km/h."
+  },
+  {
+    "id": 8,
+    "category": "Legislação",
+    "text": "Deixar de usar o cinto de segurança constitui infração:",
+    "options": [
+      "Gravíssima",
+      "Grave",
+      "Média",
+      "Leve"
+    ],
+    "correct": 1,
+    "explanation": "Deixar de usar cinto de segurança (condutor ou passageiro) é infração grave com retenção para regularização."
+  },
+  {
+    "id": 9,
+    "category": "Legislação",
+    "text": "As placas de advertência têm por finalidade alertar os usuários das condições potencialmente perigosas da via. Suas cores são predominantemente:",
+    "options": [
+      "Vermelha e branca",
+      "Amarela e preta",
+      "Azul e branca",
+      "Verde e branca"
+    ],
+    "correct": 1,
+    "explanation": "As placas de advertência possuem fundo amarelo e orla/símbolos pretos."
+  },
+  {
+    "id": 10,
+    "category": "Legislação",
+    "text": "Estacionar o veículo na área de cruzamento de vias prejudicando a circulação é infração:",
+    "options": [
+      "Leve",
+      "Média",
+      "Grave",
+      "Gravíssima"
+    ],
+    "correct": 2,
+    "explanation": "Estacionar em cruzamento prejudicando a circulação de veículos e pedestres é infração grave."
+  },
+  {
+    "id": 11,
+    "category": "Legislação",
+    "text": "Quantos pontos são atribuídos na CNH ao condutor que comete uma infração de natureza gravíssima?",
+    "options": [
+      "3 pontos",
+      "4 pontos",
+      "5 pontos",
+      "7 pontos"
+    ],
+    "correct": 3,
+    "explanation": "Infrações gravíssimas somam 7 pontos no prontuário do condutor."
+  },
+  {
+    "id": 12,
+    "category": "Legislação",
+    "text": "O sinal sonoro de dois silvos breves emitido pelo agente de trânsito significa:",
+    "options": [
+      "Atenção, siga",
+      "Pare",
+      "Diminua a marcha",
+      "Acenda as luzes"
+    ],
+    "correct": 1,
+    "explanation": "Dois silvos breves do apito do agente indicam a ordem de Pare."
+  },
+  {
+    "id": 13,
+    "category": "Direção Defensiva",
+    "text": "O conceito de Direção Defensiva inclui a pilotagem consciente para evitar acidentes. Qual é a regra básica?",
+    "options": [
+      "Trafegar sempre acima da velocidade",
+      "Ver, pensar e agir com antecedência",
+      "Confiar no direito de preferência em qualquer situação",
+      "Manter o veículo colado ao carro da frente"
+    ],
+    "correct": 1,
+    "explanation": "Os pilares da ação defensiva baseiam-se em ver a situação, pensar na solução e agir a tempo."
+  },
+  {
+    "id": 14,
+    "category": "Direção Defensiva",
+    "text": "Em caso de aquaplanagem, o procedimento correto a ser adotado pelo condutor é:",
+    "options": [
+      "Frear bruscamente e virar o volante",
+      "Acelerar para recuperar a aderência",
+      "Tirar o pé do acelerador e manter o volante reto",
+      "Puxar o freio de mão imediatamente"
+    ],
+    "correct": 2,
+    "explanation": "Na aquaplanagem, tira-se o pé do acelerador e mantém-se a direção firme até recuperar a aderência."
+  },
+  {
+    "id": 15,
+    "category": "Direção Defensiva",
+    "text": "A distância de seguimento é a distância mínima que você deve manter do veículo da frente. Uma forma prática de calculá-la em pista seca é:",
+    "options": [
+      "A regra dos 2 segundos",
+      "A regra dos 5 segundos",
+      "1 metro para cada 10 km/h",
+      "Sempre 50 metros fixos"
+    ],
+    "correct": 0,
+    "explanation": "A regra dos 2 segundos é recomendada em pista seca para manter distância segura do veículo à frente."
+  },
+  {
+    "id": 16,
+    "category": "Direção Defensiva",
+    "text": "O que é o ponto cego de um veículo?",
+    "options": [
+      "O espaço no porta-malas sem visibilidade",
+      "A área não coberta pelos espelhos retrovisores",
+      "A parte inferior dos pneus",
+      "O farol desligado durante a noite"
+    ],
+    "correct": 1,
+    "explanation": "Ponto cego é a área ao redor do veículo que o condutor não consegue enxergar diretamente nem pelos retrovisores."
+  },
+  {
+    "id": 17,
+    "category": "Direção Defensiva",
+    "text": "Quando a pista está molhada, a aderência dos pneus com o solo diminui. Isso exige que o condutor:",
+    "options": [
+      "Aumente a velocidade para passar rápido pelo local",
+      "Reduza a velocidade e aumente a distância do veículo da frente",
+      "Freie constantemente com força",
+      "Mantenha a mesma distância de pista seca"
+    ],
+    "correct": 1,
+    "explanation": "Em pistas molhadas, a distância de frenagem aumenta, exigindo menor velocidade e maior espaçamento."
+  },
+  {
+    "id": 18,
+    "category": "Direção Defensiva",
+    "text": "Uma condição adversa de tempo no trânsito refere-se a:",
+    "options": [
+      "Vias com buracos",
+      "Chuva, neblina, vento ou granizo",
+      "Motorista cansado",
+      "Pneus carecas"
+    ],
+    "correct": 1,
+    "explanation": "Fatores meteorológicos (chuva, neblina, vento) são considerados condições adversas do tempo."
+  },
+  {
+    "id": 19,
+    "category": "Direção Defensiva",
+    "text": "Para realizar uma ultrapassagem segura, o motorista defensivo deve primeiramente:",
+    "options": [
+      "Buzinar insistentemente",
+      "Certificar-se de que a faixa contrária está livre e a manobra é permitida",
+      "Acelerar ao máximo antes de sinalizar",
+      "Manter a luz alta ligada"
+    ],
+    "correct": 1,
+    "explanation": "Certificar-se de que há espaço, visibilidade e permissão legal é a primeira etapa de uma ultrapassagem segura."
+  },
+  {
+    "id": 20,
+    "category": "Direção Defensiva",
+    "text": "Consumo de bebidas alcoólicas afeta a capacidade do condutor porque:",
+    "options": [
+      "Aumenta o tempo de reação e reduz os reflexos",
+      "Diminui o tempo de reação e melhora a visão",
+      "Deixa a visão mais nítida",
+      "Melhora a concentração do motorista"
+    ],
+    "correct": 0,
+    "explanation": "O álcool deprime o sistema nervoso central, atrasando o tempo de reação e prejudicando a coordenação."
+  },
+  {
+    "id": 21,
+    "category": "Direção Defensiva",
+    "text": "Diante de ventos laterais fortíssimos, a atitude defensiva correta é:",
+    "options": [
+      "Aumentar a velocidade para cortar o vento",
+      "Abrir os vidros e acelerar",
+      "Reduzir a velocidade e segurar com firmeza o volante",
+      "Parar imediatamente sobre a pista"
+    ],
+    "correct": 2,
+    "explanation": "Reduzir a velocidade reduz o impacto da rajada no veículo e manter firme a direção ajuda na estabilidade."
+  },
+  {
+    "id": 22,
+    "category": "Direção Defensiva",
+    "text": "O uso do cinto de segurança no banco traseiro é:",
+    "options": [
+      "Obrigatório para todos os ocupantes",
+      "Opcional em rodovias",
+      "Recomendado apenas para crianças",
+      "Obrigatório apenas em viagens longas"
+    ],
+    "correct": 0,
+    "explanation": "O cinto de segurança é obrigatório para condutor e todos os passageiros em qualquer via pública."
+  },
+  {
+    "id": 23,
+    "category": "Primeiros Socorros",
+    "text": "Ao prestar atendimento a uma vítima de acidente de trânsito, a primeira atitude a ser tomada é:",
+    "options": [
+      "Mover a vítima imediatamente",
+      "Sinalizar o local do acidente",
+      "Oferecer água ou alimento",
+      "Retirar o capacete do motociclista"
+    ],
+    "correct": 1,
+    "explanation": "A prioridade absoluta em um acidente é garantir a segurança do local para evitar novas colisões."
+  },
+  {
+    "id": 24,
+    "category": "Primeiros Socorros",
+    "text": "Em caso de suspeita de fratura na coluna vertebral do acidentado, o socorrista deve:",
+    "options": [
+      "Sentar a vítima para respirar melhor",
+      "Não movimentar a vítima e aguardar socorro especializado",
+      "Transportar a vítima imediatamente no banco do carro",
+      "Fazer a vítima caminhar devagar"
+    ],
+    "correct": 1,
+    "explanation": "Movimentar vítimas com trauma de coluna pode causar lesões irreversíveis na medula (paralisia)."
+  },
+  {
+    "id": 25,
+    "category": "Primeiros Socorros",
+    "text": "Qual é o número telefônico de emergência do SAMU (Serviço de Atendimento Móvel de Urgência)?",
+    "options": [
+      "190",
+      "191",
+      "192",
+      "193"
+    ],
+    "correct": 2,
+    "explanation": "SAMU é acionado pelo número 192 (Polícia Militar é 190, PRF é 191 e Bombeiros é 193)."
+  },
+  {
+    "id": 26,
+    "category": "Primeiros Socorros",
+    "text": "Ao socorrer uma vítima inconsciente que respira, a posição de segurança para evitar aspiração de vômito é:",
+    "options": [
+      "Deitada de barriga para cima",
+      "Deitada de lado (posição lateral de segurança)",
+      "Sentada com a cabeça baixa",
+      "De cabeça para baixo"
+    ],
+    "correct": 1,
+    "explanation": "Colocar a vítima respirando em posição lateral de segurança evita sufocamento por secreções ou vômito."
+  },
+  {
+    "id": 27,
+    "category": "Meio Ambiente e Cidadania",
+    "text": "Os gases emitidos pelos veículos automotores contribuem para a poluição do ar. O equipamento responsável por reduzir essa emissão é o:",
+    "options": [
+      "Silenciador",
+      "Radiador",
+      "Catalisador",
+      "Carburador"
+    ],
+    "correct": 2,
+    "explanation": "O catalisador transforma gases poluentes em substâncias menos nocivas antes de saírem pelo escapamento."
+  },
+  {
+    "id": 28,
+    "category": "Meio Ambiente e Cidadania",
+    "text": "Lançar sacos de lixo ou objetos pela janela do veículo nas vias públicas é uma atitude:",
+    "options": [
+      "Aceitável em rodovias desertas",
+      "Infracional prevista pelo CTB e prejudicial ao meio ambiente",
+      "Permitida se o objeto for biodegradável",
+      "Apenas uma falha sem punição prevista"
+    ],
+    "correct": 1,
+    "explanation": "Atirar resíduos ou objetos da janela do veículo constitui infração de trânsito média e polui o meio ambiente."
+  },
+  {
+    "id": 29,
+    "category": "Mecânica Básica",
+    "text": "O sistema do veículo responsável por manter a estabilidade nas curvas e absorver os impactos das irregularidades da pista é o:",
+    "options": [
+      "Sistema de Freios",
+      "Sistema de Suspensão",
+      "Sistema de Transmissão",
+      "Sistema Elétrico"
+    ],
+    "correct": 1,
+    "explanation": "O sistema de suspensão amortece impactos e garante o contato permanente dos pneus com a pista."
+  },
+  {
+    "id": 30,
+    "category": "Mecânica Básica",
+    "text": "O nível do óleo do motor do veículo deve ser verificado preferencialmente com o motor:",
+    "options": [
+      "Aqueicdo e ligado",
+      "Frio e em local plano",
+      "Acelerando na marcha lenta",
+      "Logo após subir uma ladeira"
+    ],
+    "correct": 1,
+    "explanation": "Para uma medição correta na vareta, o motor deve estar frio e o veículo estacionado em local plano."
+  }
+]
