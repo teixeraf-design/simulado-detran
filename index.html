@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado DETRAN com Cronômetro</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-hover: #1e40af;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #15803d;
+      --success-bg: #f0fdf4;
+      --error: #b91c1c;
+      --error-bg: #fef2f2;
+      --warning: #d97706;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      width: 100%;
+      max-width: 680px;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    .header {
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .header h1 {
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+
+    .timer-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #334155;
+      transition: all 0.3s ease;
+    }
+
+    .timer-box.warning {
+      background-color: #fef3c7;
+      border-color: var(--warning);
+      color: var(--warning);
+      animation: pulse 1s infinite alternate;
+    }
+
+    .timer-box.danger {
+      background-color: var(--error-bg);
+      border-color: var(--error);
+      color: var(--error);
+      animation: pulse 0.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 1; }
+      to { opacity: 0.6; }
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background-color: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .meta-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .tag-category {
+      display: inline-block;
+      background-color: #e0e7ff;
+      color: #3730a3;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .question-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .option-btn {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background-color: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-btn.correct {
+      background-color: var(--success-bg) !important;
+      border-color: var(--success) !important;
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .option-btn.incorrect {
+      background-color: var(--error-bg) !important;
+      border-color: var(--error) !important;
+      color: var(--error);
+      font-weight: 600;
+    }
+
+    .feedback-box {
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .feedback-box.correct {
+      display: block;
+      background-color: var(--success-bg);
+      border: 1px solid var(--success);
+      color: #166534;
+    }
+
+    .feedback-box.incorrect {
+      display: block;
+      background-color: var(--error-bg);
+      border: 1px solid var(--error);
+      color: #991b1b;
+    }
+
+    .btn-next {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.2s ease;
+      display: none;
+    }
+
+    .btn-next:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Tela de Resultado Final */
+    .result-screen {
+      text-align: center;
+      display: none;
+    }
+
+    .result-screen h2 {
+      font-size: 1.75rem;
+      margin-bottom: 12px;
+    }
+
+    .score-badge {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 16px 0;
+    }
+
+    .status-pass {
+      color: var(--success);
+    }
+
+    .status-fail {
+      color: var(--error);
+    }
+
+    .result-details {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .btn-restart {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-restart:hover {
+      background-color: var(--primary-hover);
+    }
+    
+    /* Estilo para a exibição da placa dentro da questão */
+    .placa-preview {
+      width: 90px;
+      height: 90px;
+      display: block;
+      margin: 0 auto 16px auto;
+     }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- TELA DE QUIZ -->
+  <div id="quiz-screen">
+    <div class="header">
+      <div class="header-top">
+        <h1>Simulado DETRAN</h1>
+        <div id="timer-box" class="timer-box">
+          ⏱️ <span id="timer">60:00</span>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <div class="meta-info">
+        <span id="question-counter">Questão 1 de 30</span>
+        <span id="score-counter">Acertos: 0</span>
+      </div>
+    </div>
+
+    <span id="tag-category" class="tag-category">Legislação</span>
+    <div id="question-title" class="question-title">Carregando pergunta...</div>
+
+    <div id="options-container" class="options"></div>
+
+    <div id="feedback-box" class="feedback-box"></div>
+
+    <button id="btn-next" class="btn-next" onclick="nextQuestion()">Próxima Questão</button>
+  </div>
+
+  <!-- TELA DE RESULTADO -->
+  <div id="result-screen" class="result-screen">
+    <h2 id="result-title">Resultado do Simulado</h2>
+    <div id="score-badge" class="score-badge">0 / 30</div>
+    <div id="result-status" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;"></div>
+    <p id="result-details" class="result-details"></p>
+    <button class="btn-restart" onclick="startQuiz()">Tentar Novamente</button>
+  </div>
+</div>
+
+<!-- SPRITE SVG OCULTO PARA USO FUTURO DAS PLACAS -->
+<div id="svg-sprite-container" style="display: none;"></div>
+
+<script>
+  // Carrega dinamicamente o arquivo dist/placas.svg sem alterar a interface
+  async function injectSvgSprite() {
+    try {
+      const response = await fetch('dist/placas.svg');
+      if (response.ok) {
+        const spriteText = await response.text();
+        document.getElementById('svg-sprite-container').innerHTML = spriteText;
+      }
+    } catch (err) {
+      console.warn("Aviso: Sprite SVG não pôde ser injetado via fetch local sem HTTP server.", err);
+    }
+  }
+  injectSvgSprite();
+
+  // 1. REGRA DE PROPORÇÃO E FUNÇÃO GERADORA
+  const QUOTAS = {
+    "Legislação de Trânsito": 12,
+    "Direção Defensiva": 10,
+    "Primeiros Socorros": 4,
+    "Meio Ambiente e Cidadania": 2,
+    "Mecânica Básica": 2
+  };
+
+  function generateProportionalExam(database) {
+    let examQuestions = [];
+
+    for (const [category, count] of Object.entries(QUOTAS)) {
+      const categoryQuestions = database.filter(q => q.category === category);
+      const shuffledCategory = shuffle(categoryQuestions);
+      const selected = shuffledCategory.slice(0, count);
+      examQuestions = examQuestions.concat(selected);
+    }
+
+    return shuffle(examQuestions);
+  }
+
+  // 2. BANCO DE DADOS DE QUESTÕES
+  const rawQuestions = [
+     {
+      category: "Legislação de Trânsito",
+      question: "A placa de sinalização representada abaixo significa:",
+      placaId: "R-1",
+      options: [
+        { text: "Parada obrigatória à frente.", correct: false },
+        { text: "Parada obrigatória.", correct: true },
+        { text: "Parada proibida.", correct: false },
+        { text: "Ponto de parada de ônibus.", correct: false }
+      ],
+      explanation: "A placa R-1 indica Parada Obrigatória no local. É a única placa de regulamentação no formato octogonal."
+    },    
+    {
+      category: "Legislação de Trânsito",
+      question: "Qual das opções abaixo corresponde a uma infração gravíssima punida com multa e suspensão do direito de dirigir?",
+      options: [
+        { text: "Transitar em velocidade superior à máxima em até 20%.", correct: false },
+        { text: "Dirigir veículo sem usar o cinto de segurança.", correct: false },
+        { text: "Dirigir sob a influência de álcool ou de qualquer outra substância psicoativa.", correct: true },
+        { text: "Estacionar o veículo sobre a faixa de pedestres.", correct: false }
+      ],
+      explanation: "Dirigir sob a influência de álcool é infração gravíssima com multa (fator 10x) e suspensão direta da CNH por 12 meses (Art. 165 do CTB)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Quando o sinal semafórico indicar a luz vermelha, o condutor deve:",
+      options: [
+        { text: "Parar o veículo obrigatoriamente antes da linha de retenção.", correct: true },
+        { text: "Reduzir a velocidade e cruzar com cuidado se não houver pedestres.", correct: false },
+        { text: "Buzinar para alertar outros motoristas e prosseguir.", correct: false },
+        { text: "Acelerar para desocupar a via rapidamente.", correct: false }
+      ],
+      explanation: "A luz vermelha do semáforo exige parada obrigatória antes da linha de retenção ou da faixa de pedestres."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "A placa de sinalização R-1 tem formato octogonal, fundo vermelho e a palavra 'PARADA'. Ela significa:",
+      options: [
+        { text: "Parada obrigatória à frente.", correct: false },
+        { text: "Parada obrigatória.", correct: true },
+        { text: "Parada proibida.", correct: false },
+        { text: "Ponto de parada de ônibus.", correct: false }
+      ],
+      explanation: "A placa R-1 indica Parada Obrigatória no local. É a única placa de regulamentação no formato octogonal."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Ao se aproximar de um cruzamento não sinalizado, a preferência de passagem é do veículo que:",
+      options: [
+        { text: "Estiver transitando pela direita do outro condutor.", correct: true },
+        { text: "Estiver transitando pela esquerda do outro condutor.", correct: false },
+        { text: "Desenvolver maior velocidade.", correct: false },
+        { text: "Acionar a buzina primeiro.", correct: false }
+      ],
+      explanation: "Em cruzamento não sinalizado, a regra do CTB determina preferência para quem vem pela direita do condutor."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "O documento de porte obrigatório que comprova o licenciamento do veículo e a autorização para circulação é o:",
+      options: [
+        { text: "CRV (Certificado de Registro do Veículo).", correct: false },
+        { text: "CRLV (Certificado de Registro e Licenciamento do Veículo) impresso ou digital.", correct: true },
+        { text: "Comprovante de pagamento do IPVA.", correct: false },
+        { text: "Contrato de compra e venda.", correct: false }
+      ],
+      explanation: "O CRLV é o documento de porte obrigatório relativo à circulação do veículo (aceito no formato digital oficial ou impresso)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "De acordo com o Código de Trânsito Brasileiro (CTB), as vias urbanas classificam-se em:",
+      options: [
+        { text: "De trânsito rápido, arteriais, coletoras e locais.", correct: true },
+        { text: "Rodovias, estradas, vicinais e alamedas.", correct: false },
+        { text: "Expressas, preferenciais, secundárias e rurais.", correct: false },
+        { text: "Nacionais, estaduais, municipais e particulares.", correct: false }
+      ],
+      explanation: "As vias urbanas dividem-se legalmente em 4 categorias: Trânsito Rápido, Arteriais, Coletoras e Locais."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "A validade da Carteira Nacional de Habilitação (CNH) para condutores com idade inferior a 50 anos é de até:",
+      options: [
+        { text: "3 anos.", correct: false },
+        { text: "5 anos.", correct: false },
+        { text: "10 anos.", correct: true },
+        { text: "2 anos.", correct: false }
+      ],
+      explanation: "Pela legislação atual do CTB, a validade do exame de aptidão física e mental para condutores com menos de 50 anos é de até 10 anos."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "O uso de buzina em vias urbanas é permitido desde que:",
+      options: [
+        { text: "Seja em toques breves, no período das 22h às 6h.", correct: false },
+        { text: "Seja em toques breves, para alertar outro condutor sobre intenção de ultrapassar ou evitar acidentes.", correct: true },
+        { text: "Seja para apressar o pedestre que atravessa a via.", correct: false },
+        { text: "O sinal luminoso do semáforo fique verde.", correct: false }
+      ],
+      explanation: "A buzina só deve ser usada em toques breves e em situações de alerta de segurança ou para sinalizar ultrapassagem fora das áreas urbanas."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Deixar de prestar socorro à vítima de acidente de trânsito, quando possível fazê-lo sem risco pessoal, é considerado:",
+      options: [
+        { text: "Apenas uma infração de trânsito média.", correct: false },
+        { text: "Infração gravíssima e crime de trânsito.", correct: true },
+        { text: "Uma conduta sem penalidade prevista se houver testemunhas.", correct: false },
+        { text: "Infração leve com remoção do veículo.", correct: false }
+      ],
+      explanation: "A omissão de socorro é configurada tanto como infração de trânsito gravíssima (Art. 176) quanto como crime de trânsito (Art. 304)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "A ultrapassagem de outro veículo em movimento deve ser feita, via de regra, pela:",
+      options: [
+        { text: "Direita, acionando a buzina.", correct: false },
+        { text: "Esquerda, sinalizando com antecedência e observando a segurança.", correct: true },
+        { text: "Calçada ou acostamento, quando o trânsito estiver lento.", correct: false },
+        { text: "Esquerda, piscando o farol alto continuamente.", correct: false }
+      ],
+      explanation: "A regra geral do CTB é ultrapassar sempre pela esquerda, devendo o motorista sinalizar com antecedência."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "As placas de fundo amarelo com símbolos ou textos pretos pertencem à categoria de placas de:",
+      options: [
+        { text: "Regulamentação.", correct: false },
+        { text: "Advertência.", correct: true },
+        { text: "Indicação.", correct: false },
+        { text: "Serviços auxiliares.", correct: false }
+      ],
+      explanation: "As placas amarelas são de Advertência e servem para alertar os condutores sobre condições potencialmente perigosas na via."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Transitar com o veículo em acostamentos é uma conduta classificada como infração:",
+      options: [
+        { text: "Média.", correct: false },
+        { text: "Grave.", correct: false },
+        { text: "Leve.", correct: false },
+        { text: "Gravíssima, com multa multiplicada por 3.", correct: true }
+      ],
+      explanation: "Transitar pelo acostamento é infração gravíssima com fator multiplicador de 3x sobre a multa."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "A distância que o veículo percorre desde o momento em que o condutor avista um perigo até o momento em que pisa no freio é chamada de:",
+      options: [
+        { text: "Distância de frenagem.", correct: false },
+        { text: "Distância de reação.", correct: true },
+        { text: "Distância de parada total.", correct: false },
+        { text: "Distância de seguimento.", correct: false }
+      ],
+      explanation: "Distância de reação é a distância percorrida do instante em que se vê o perigo até o acionamento mecânico do freio."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "A aquaplanagem é o fenômeno em que o veículo perde o contato dos pneus com o solo devido a uma camada de água na pista. Para corrigi-la, o motorista deve:",
+      options: [
+        { text: "Frear bruscamente e virar o volante rapidamente.", correct: false },
+        { text: "Manter a aceleração e puxar o freio de mão.", correct: false },
+        { text: "Segurar o volante com firmeza, tirar o pé do acelerador e não frear bruscamente.", correct: true },
+        { text: "Engrenar a marcha ré.", correct: false }
+      ],
+      explanation: "Pressionar os freios na aquaplanagem trava as rodas e causa derrapagens. Deve-se tirar o pé do acelerador e manter o volante firme."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "São consideradas 'condições adversas' de trânsito que influenciam na pilotagem:",
+      options: [
+        { text: "Luz, tempo, via, trânsito, veículo e condutor.", correct: true },
+        { text: "Apenas o excesso de velocidade e o consumo de álcool.", correct: false },
+        { text: "Marca do veículo, ano de fabricação e cor da pintura.", correct: false },
+        { text: "Presença de radares fixos e guardas municipais.", correct: false }
+      ],
+      explanation: "As 6 condições adversas clássicas na Direção Defensiva são: Luz, Tempo, Via, Trânsito, Veículo e Condutor."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "O que significa o conceito de 'ver e ser visto' na direção defensiva?",
+      options: [
+        { text: "Usar sempre a buzina para alertar os outros.", correct: false },
+        { text: "Usar luzes do veículo corretamente e posicionar-se de forma visível aos demais usuários da via.", correct: true },
+        { text: "Olhar apenas para o veículo da frente.", correct: false },
+        { text: "Parar o veículo no meio da pista para observar o tráfego.", correct: false }
+      ],
+      explanation: "'Ver e ser visto' é o princípio de enxergar antecipadamente os riscos e garantir que os outros condutores e pedestres notem sua presença."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "Trafegar com pneus carecas (profundidade dos sulcos inferior a 1,6 mm) afeta diretamente a segurança porque:",
+      options: [
+        { text: "Aumenta o consumo de combustível sem impactar a estabilidade.", correct: false },
+        { text: "Reduz a aderência com o solo e aumenta o risco de derrapagens e aquaplanagem.", correct: true },
+        { text: "Melhora a resposta do sistema de freios ABS.", correct: false },
+        { text: "Causa danos apenas à estética do veículo.", correct: false }
+      ],
+      explanation: "Sulcos menores que 1,6 mm perdem a capacidade de escoar a água e aderir ao asfalto, causando riscos severos de derrapagem."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "Qual deve ser a atitude de um condutor ao perceber que está sendo ultrapassado por outro veículo?",
+      options: [
+        { text: "Acelerar para impedir a ultrapassagem.", correct: false },
+        { text: "Manter a velocidade ou reduzi-la ligeiramente e deslocar-se para a direita da faixa, facilitando a manobra.", correct: true },
+        { text: "Deslocar-se para a esquerda para fechar a passagem.", correct: false },
+        { text: "Ligar o pisca-alerta imediatamente.", correct: false }
+      ],
+      explanation: "Quem é ultrapassado deve colaborar mantendo a velocidade ou reduzindo um pouco, além de se deslocar para a direita."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "A neblina densa reduz drasticamente a visibilidade. Nessa situação, o condutor deve:",
+      options: [
+        { text: "Ligar o farol alto para enxergar mais longe.", correct: false },
+        { text: "Reduzir a velocidade, acender os faróis baixos ou de neblina e manter distância segura do veículo à frente.", correct: true },
+        { text: "Ligar o pisca-alerta com o veículo em movimento e acelerar.", correct: false },
+        { text: "Parar sobre a pista de rolamento até que a neblina passe.", correct: false }
+      ],
+      explanation: "Farol alto na neblina reflete a luz nas gotículas d'água e cega a visão. Deve-se usar farol baixo ou de neblina e reduzir a velocidade."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "O cinto de segurança de três pontos deve ser utilizado por:",
+      options: [
+        { text: "Apenas pelo motorista e passageiro do banco da frente.", correct: false },
+        { text: "Todos os ocupantes do veículo, inclusive no banco traseiro.", correct: true },
+        { text: "Apenas crianças menores de 10 anos.", correct: false },
+        { text: "Somente em rodovias federais.", correct: false }
+      ],
+      explanation: "O cinto é de uso obrigatório para todos os passageiros e motorista em qualquer tipo de via."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "O estado físico e mental do condutor é fundamental para a segurança. O cansaço ao volante gera:",
+      options: [
+        { text: "Redução no tempo de reação e diminuição da concentração.", correct: true },
+        { text: "Aumento da agilidade de reflexos.", correct: false },
+        { text: "Melhor percepção do ambiente ao redor.", correct: false },
+        { text: "Nenhuma alteração no modo de dirigir.", correct: false }
+      ],
+      explanation: "Fadiga e cansaço retardam as reações do condutor e prejudicam o foco nas condições de tráfego."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "A distância de seguimento é o espaço entre o seu veículo e o que segue à sua frente. Uma forma prática de mantê-la em pistas secas é aplicar a regra dos:",
+      options: [
+        { text: "2 segundos.", correct: true },
+        { text: "10 segundos.", correct: false },
+        { text: "30 metros fixos.", correct: false },
+        { text: "5 segundos.", correct: false }
+      ],
+      explanation: "A regra dos 2 segundos é o método prático ensinado pelo DETRAN para manter uma distância segura do veículo da frente em pista seca."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Ao se deparar com um acidente de trânsito em uma via rápida, a PRIMEIRA atitude a ser tomada é:",
+      options: [
+        { text: "Remover as vítimas de dentro dos veículos imediatamente.", correct: false },
+        { text: "Sinalizar o local para evitar novos acidentes e chamar o socorro especializado.", correct: true },
+        { text: "Oferecer água ou alimentos às vítimas conscientes.", correct: false },
+        { text: "Retirar o capacete de motociclistas caídos.", correct: false }
+      ],
+      explanation: "A prioridade inicial em Primeiros Socorros no trânsito é sempre garantir a segurança do local para evitar colisões secundárias."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Em relação a uma vítima de acidente inconsciente no local da ocorrência, é CORRETO afirmar:",
+      options: [
+        { text: "Deve-se dar um tapinha no rosto para fazê-la acordar.", correct: false },
+        { text: "Não se deve movimentar a vítima nem seu pescoço sem treinamento prévio, salvo em perigo iminente.", correct: true },
+        { text: "Deve-se levantar suas pernas e fazê-la caminhar.", correct: false },
+        { text: "Deve-se dar líquidos mornos para reanimá-la.", correct: false }
+      ],
+      explanation: "Movimentar uma vítima inadvertidamente pode lesionar a coluna vertebral e gerar paralisia irreversível."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Qual é o número do telefone de emergência do SAMU (Serviço de Atendimento Móvel de Urgência)?",
+      options: [
+        { text: "190", correct: false },
+        { text: "192", correct: true },
+        { text: "193", correct: false },
+        { text: "199", correct: false }
+      ],
+      explanation: "O número do SAMU é 192 (190 é Polícia Militar e 193 é Corpo de Bombeiros)."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "O equipamento instalado no sistema de escapamento dos veículos automotores para reduzir a emissão de gases poluentes é o:",
+      options: [
+        { text: "Radiador.", correct: false },
+        { text: "Carburador.", correct: false },
+        { text: "Catalisador.", correct: true },
+        { text: "Alternador.", correct: false }
+      ],
+      explanation: "O catalisador converte gases tóxicos gerados pela queima do combustível em gases menos nocivos antes de expeli-los."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "Atirar do veículo ou abandonar na via objetos ou substâncias é uma conduta que:",
+      options: [
+        { text: "É permitida se o material for biodegradável.", correct: false },
+        { text: "Trata-se de infração de trânsito e causa poluição ambiental e riscos de acidentes.", correct: true },
+        { text: "É permitida apenas em vias rurais.", correct: false },
+        { text: "Não gera penalidade prevista no CTB.", correct: false }
+      ],
+      explanation: "Atirar ou abandonar objetos na pista é infração de trânsito (Art. 172 do CTB), além de gerar degradação ambiental."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "Cidadania no trânsito significa:",
+      options: [
+        { text: "Exigir seus direitos e ignorar os deveres dos outros.", correct: false },
+        { text: "Dirigir em velocidade alta quando estiver atrasado.", correct: false },
+        { text: "Respeitar as leis, ter empatia com pedestres e ciclistas e contribuir para a segurança coletiva.", correct: true },
+        { text: "Dar preferência apenas para veículos de grande porte.", correct: false }
+      ],
+      explanation: "Cidadania no trânsito envolve tolerância, empatia, respeito aos direitos alheios e cooperação para a segurança de todos."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "A luz espia no painel do veículo com o símbolo de uma 'lâmpada de óleo' acesa em vermelho indica:",
+      options: [
+        { text: "Baixo nível ou falta de pressão no óleo lubrificante do motor.", correct: true },
+        { text: "Que o combustível está acabando.", correct: false },
+        { text: "Que os pneus precisam de calibragem.", correct: false },
+        { text: "Que a bateria do carro está totalmente carregada.", correct: false }
+      ],
+      explanation: "A luz de óleo acesa em vermelho alerta sobre problemas graves na pressão ou no nível de óleo lubrificante do motor."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "A função principal do sistema de arrefecimento do motor é:",
+      options: [
+        { text: "Aumentar a potência do motor na aceleração.", correct: false },
+        { text: "Manter o motor operando na temperatura ideal de trabalho, evitando o superaquecimento.", correct: true },
+        { text: "Lubrificar as peças internas do motor.", correct: false },
+        { text: "Filtrar as impurezas do ar que entra no motor.", correct: false }
+      ],
+      explanation: "O sistema de arrefecimento (líquido e radiador) controla o calor interno gerado pela combustão e evita que o motor funda por superaquecimento."
+    },
+    // === NOVAS QUESTÕES DE LEGISLAÇÃO E PLACAS ===
+    {
+      category: "Legislação de Trânsito",
+      question: "A placa de regulamentação R-2 indica ao condutor:",
+      placaId: "R-2",
+      options: [
+        { text: "Parada obrigatória.", correct: false },
+        { text: "Dê a preferência.", correct: true },
+        { text: "Proibido retornar à esquerda.", correct: false },
+        { text: "Sentido proibido.", correct: false }
+      ],
+      explanation: "A placa R-2 exige que o condutor dê a preferência de passagem aos veículos que transitam pela via preferencial."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "A placa de sinalização R-3 informa ao motorista que é:",
+      placaId: "R-3",
+      options: [
+        { text: "Proibido virar à esquerda.", correct: false },
+        { text: "Proibido virar à direita.", correct: false },
+        { text: "Sentido proibido de circulação.", correct: true },
+        { text: "Proibido ultrapassar.", correct: false }
+      ],
+      explanation: "A placa R-3 indica a proibição de transitar a partir daquele ponto no sentido sinalizado."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "A placa de regulamentação R-4a estabelece:",
+      placaId: "R-4a",
+      options: [
+        { text: "Proibido virar à esquerda.", correct: true },
+        { text: "Proibido virar à direita.", correct: false },
+        { text: "Proibido retornar à esquerda.", correct: false },
+        { text: "Curva acentuada à esquerda.", correct: false }
+      ],
+      explanation: "A placa R-4a sinaliza a proibição do condutor realizar a conversão (virar) à esquerda no cruzamento ou via."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Ao visualizar a placa R-6a, o condutor deve saber que é:",
+      placaId: "R-6a",
+      options: [
+        { text: "Proibido parar e estacionar.", correct: false },
+        { text: "Proibido estacionar.", correct: true },
+        { text: "Estacionamento regulamentado.", correct: false },
+        { text: "Parada obrigatória.", correct: false }
+      ],
+      explanation: "A placa R-6a proíbe o estacionamento de veículos no trecho, mas permite a parada rápida para embarque ou desembarque."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "A placa de regulamentação R-6c significa:",
+      placaId: "R-6c",
+      options: [
+        { text: "Proibido estacionar, mas permitido parar.", correct: false },
+        { text: "Proibido parar e estacionar.", correct: true },
+        { text: "Estacionamento privativo para idosos.", correct: false },
+        { text: "Área de carga e descarga.", correct: false }
+      ],
+      explanation: "A placa R-6c (com duas tarjas vermelhas cruzadas) proíbe tanto o estacionamento quanto a imobilização temporária (parada)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Qual é o limite máximo de pontos na CNH no período de 12 meses para o condutor que não cometeu nenhuma infração gravíssima?",
+      options: [
+        { text: "20 pontos.", correct: false },
+        { text: "30 pontos.", correct: false },
+        { text: "40 pontos.", correct: true },
+        { text: "50 pontos.", correct: false }
+      ],
+      explanation: "O limite de pontos na CNH é gradativo: 40 pontos (sem infração gravíssima), 30 pontos (com 1 gravíssima) e 20 pontos (com 2 ou mais gravíssimas)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Para condutores com idade igual ou superior a 70 anos, a validade do exame de aptidão física e mental da CNH é de até:",
+      options: [
+        { text: "5 anos.", correct: false },
+        { text: "3 anos.", correct: true },
+        { text: "1 ano.", correct: false },
+        { text: "10 anos.", correct: false }
+      ],
+      explanation: "A renovação da CNH é de 10 em 10 anos (menos de 50 anos), 5 em 5 anos (50 a 69 anos) e 3 em 3 anos (70 anos ou mais)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Assinale a alternativa que indica uma infração considerada GRAVÍSSIMA no trânsito:",
+      options: [
+        { text: "Deixar de usar o cinto de segurança.", correct: false },
+        { text: "Avançar o sinal vermelho do semáforo ou o de parada obrigatória.", correct: true },
+        { text: "Estacionar o veículo em local proibido.", correct: false },
+        { text: "Usar a buzina em desacordo com as normas estabelecidas.", correct: false }
+      ],
+      explanation: "Avançar o sinal vermelho ou a placa de parada obrigatória é infração gravíssima, gerando 7 pontos na carteira (Art. 208 do CTB)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Nas vias rurais não sinalizadas, qual é a velocidade máxima permitida para automóveis em rodovias de pista dupla?",
+      options: [
+        { text: "90 km/h.", correct: false },
+        { text: "100 km/h.", correct: false },
+        { text: "110 km/h.", correct: true },
+        { text: "120 km/h.", correct: false }
+      ],
+      explanation: "Em rodovias de pista dupla não sinalizadas, o limite para automóveis, camionetas e motocicletas é de 110 km/h."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Em cruzamentos sem sinalização, a preferência de passagem em uma rotatória é do veículo que:",
+      options: [
+        { text: "Estiver circulando por ela.", correct: true },
+        { text: "Estiver entrando nela pela direita.", correct: false },
+        { text: "Desenvolver maior velocidade.", correct: false },
+        { text: "Estiver na via com maior tráfego.", correct: false }
+      ],
+      explanation: "No caso de rotatórias não sinalizadas, a preferência de passagem pertence a quem já está em circulação por ela."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Qual o valor em pontos atribuído a uma infração de natureza GRAVE?",
+      options: [
+        { text: "3 pontos.", correct: false },
+        { text: "4 pontos.", correct: false },
+        { text: "5 pontos.", correct: true },
+        { text: "7 pontos.", correct: false }
+      ],
+      explanation: "A pontuação no CTB é: Gravíssima (7 pontos), Grave (5 pontos), Média (4 pontos) e Leve (3 pontos)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "O condutor que transita com o veículo sem acender a luz baixa durante a noite comete infração de natureza:",
+      options: [
+        { text: "Leve.", correct: false },
+        { text: "Média.", correct: false },
+        { text: "Grave.", correct: true },
+        { text: "Gravíssima.", correct: false }
+      ],
+      explanation: "Transitar à noite com o farol apagado é infração grave, sujeita a multa e retenção do veículo até a regularização."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Uso do celular ao dirigir segurando ou manuseando o aparelho é classificado pelo CTB como infração:",
+      options: [
+        { text: "Média.", correct: false },
+        { text: "Grave.", correct: false },
+        { text: "Gravíssima.", correct: true },
+        { text: "Leve.", correct: false }
+      ],
+      explanation: "Manusear ou segurar o telefone celular enquanto dirige foi atualizado no CTB para infração gravíssima (7 pontos)."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Crianças com idade inferior a 10 anos que não tenham atingido 1,45m de altura devem ser transportadas no banco traseiro utilizando:",
+      options: [
+        { text: "Apenas o cinto de segurança de dois pontos.", correct: false },
+        { text: "Dispositivo de retenção adequado à sua idade, peso e altura.", correct: true },
+        { text: "No colo de um adulto com cinto individual.", correct: false },
+        { text: "Sem necessidade de cinto, desde que no banco traseiro.", correct: false }
+      ],
+      explanation: "A Lei da Cadeirinha exige o uso de dispositivo de retenção (bebê conforto, cadeirinha ou assento de elevação) para menores de 10 anos com menos de 1,45m."
+    },
+    {
+      category: "Legislação de Trânsito",
+      question: "Quando o proprietário do veículo vende o bem, qual é o prazo legal para comunicar a venda ao DETRAN?",
+      options: [
+        { text: "15 dias.", correct: false },
+        { text: "30 dias.", correct: true },
+        { text: "60 dias.", correct: false },
+        { text: "Imediatamente, no mesmo dia.", correct: false }
+      ],
+      explanation: "O proprietário antigo deve encaminhar a comunicação de venda ao DETRAN no prazo máximo de 30 dias sob pena de ter responsabilidade solidária."
+    },
+    // === NOVAS QUESTÕES DIVERSAS (DIREÇÃO DEFENSIVA, SOCORROS, MEIO AMBIENTE E MECÂNICA) ===
+    {
+      category: "Direção Defensiva",
+      question: "Ao trafegar em uma rodovia sob chuva intensa, o fenômeno da aquaplanagem ocorre principalmente devido a:",
+      options: [
+        { text: "Combinação de alta velocidade, excesso de água na pista e pneus desgastados.", correct: true },
+        { text: "Uso incorreto dos freios ABS em pistas molhadas.", correct: false },
+        { text: "Excesso de calibragem nos pneus dianteiros.", correct: false },
+        { text: "Falha no sistema de suspensão traseira do veículo.", correct: false }
+      ],
+      explanation: "A aquaplanagem acontece quando os pneus perdem o contato com o asfalto por causa de uma lâmina d'água. Pneus carecas e alta velocidade aumentam drasticamente esse risco."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "O sistema responsável por permitir que as rodas motrizes girem em velocidades diferentes ao fazer uma curva é o:",
+      options: [
+        { text: "Sistemas de freios.", correct: false },
+        { text: "Diferencial.", correct: true },
+        { text: "Alternador.", correct: false },
+        { text: "Sistema de arrefecimento.", correct: false }
+      ],
+      explanation: "O diferencial compensa a diferença de distância que as rodas de um mesmo eixo percorrem durante uma curva, permitindo que a roda externa gire mais rápido que a interna."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Ao sinalizar o local de um acidente em uma via de trânsito rápido com pista seca durante o dia, a distância mínima recomendada para posicionar o triângulo é de:",
+      options: [
+        { text: "30 passos largos.", correct: false },
+        { text: "60 passos largos.", correct: false },
+        { text: "80 passos largos (ou metros).", correct: true },
+        { text: "100 passos largos.", correct: false }
+      ],
+      explanation: "Em vias de trânsito rápido (velocidade máxima de 80 km/h), a distância de segurança para sinalização é de 80 passos/metros na pista seca e de dia."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "O monóxido de carbono (CO) emitido pelos veículos automotores é um gás:",
+      options: [
+        { text: "Com cheiro forte e que causa irritação imediata nos olhos.", correct: false },
+        { text: "Incolor, inodoro e altamente tóxico, podendo ser fatal.", correct: true },
+        { text: "Inofensivo à saúde humana, afetando apenas a camada de ozônio.", correct: false },
+        { text: "Que melhora a combustão do motor quando reciclado.", correct: false }
+      ],
+      explanation: "O monóxido de carbono é um gás imperceptível (sem cheiro e sem cor) que impede o transporte de oxigênio pelo sangue, podendo levar à morte por asfixia."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "O condutor defensivo deve saber que o 'ponto cego' do veículo é:",
+      options: [
+        { text: "O espaço no painel onde não há indicadores luminosos.", correct: false },
+        { text: "A área da via que não pode ser visualizada através dos espelhos retrovisores.", correct: true },
+        { text: "A região central do para-brisa encoberta pelo retrovisor interno.", correct: false },
+        { text: "O trecho da rodovia sem iluminação pública durante a noite.", correct: false }
+      ],
+      explanation: "Pontos cegos são as áreas ao redor do veículo que ficam fora do campo de visão dos retrovisores internos e externos."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Em caso de acidente com vítima apresentando sangramento abundante no braço (hemorragia externa), a medida correta de primeiros socorros é:",
+      options: [
+        { text: "Fazer um torniquete apertado no pescoço da vítima.", correct: false },
+        { text: "Aplicar compressão direta sobre o ferimento usando um pano limpo.", correct: true },
+        { text: "Lavar a ferida com álcool concentrado.", correct: false },
+        { text: "Oferecer remédios para dor antes de estancar o sangue.", correct: false }
+      ],
+      explanation: "A compressão direta no local do sangramento com pano limpo ou gaze é a conduta primária e segura para conter hemorragias externas."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "Se o pedal de freio do veículo estiver 'fofo' ou afundando até o fim ao ser pressionado, a causa mais provável é:",
+      options: [
+        { text: "Desgaste na correia dentada.", correct: false },
+        { text: "Presença de ar ou vazamento no fluido de freio.", correct: true },
+        { text: "Pressão alta no radiador.", correct: false },
+        { text: "Falta de óleo no cárter.", correct: false }
+      ],
+      explanation: "A perda de resistência no pedal do freio indica vazamento do fluido hidráulico ou entrada de bolhas de ar no sistema."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "A poluição sonora no trânsito é gerada pelo excesso de ruídos. Ela pode provocar no ser humano:",
+      options: [
+        { text: "Estresse, irritabilidade, insônia e perda auditiva progressiva.", correct: true },
+        { text: "Apenas desconforto passageiro nos ouvidos sem danos físicos.", correct: false },
+        { text: "Melhoria na atenção do condutor em vias movimentadas.", correct: false },
+        { text: "Aumento da capacidade de reação a sons agudos.", correct: false }
+      ],
+      explanation: "Níveis elevados de ruído contínuo afetam o sistema nervoso central e a audição, causando desde insônia e estresse até surdez permanente."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "Em caso de ofuscamento da visão provocado pelo farol alto de um veículo em sentido contrário, o condutor deve:",
+      options: [
+        { text: "Ligar o farol alto também para encandear o outro motorista.", correct: false },
+        { text: "Olhar fixamente para as luzes do veículo que se aproxima.", correct: false },
+        { text: "Desviar o olhar para a linha de bordo da direita da pista e reduzir a velocidade.", correct: true },
+        { text: "Fechar os olhos por alguns segundos até o veículo passar.", correct: false }
+      ],
+      explanation: "Para combater o ofuscamento, desvie o olhar para a sinalização horizontal à direita da pista (faixa de bordo) e ajuste a velocidade com segurança."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "A função do alternador no sistema elétrico do veículo é:",
+      options: [
+        { text: "Gerar energia elétrica para recarregar a bateria e alimentar o sistema com o motor funcionando.", correct: true },
+        { text: "Dar a partida inicial no motor quando se gira a chave.", correct: false },
+        { text: "Medir a quantidade de combustível disponível no tanque.", correct: false },
+        { text: "Controlar a faísca nas velas de ignição.", correct: false }
+      ],
+      explanation: "O alternador transforma a energia mecânica do motor em energia elétrica para manter a bateria carregada e os componentes elétricos alimentados."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Ao atender uma vítima de acidente que esteja em choque emocional (pálida, trêmula e ansiosa), a atitude correta é:",
+      options: [
+        { text: "Oferecer um copo de água bem gelada ou café quente.", correct: false },
+        { text: "Acalmá-la, mantê-la aquecida e informar que o socorro está a caminho.", correct: true },
+        { text: "Sacudi-la firmemente pelos ombros para que retome a consciência.", correct: false },
+        { text: "Pedir que ela se levante e caminhe para aliviar a tensão.", correct: false }
+      ],
+      explanation: "Não se deve oferecer líquidos a vítimas de acidente. O correto é transmitir apoio psicológico, aquecê-la e aguardar os profissionais."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "Qual das opções abaixo contribui diretamente para a redução da emissão de poluentes pelos veículos?",
+      options: [
+        { text: "Manter o motor desregulado e com o filtro de ar sujo.", correct: false },
+        { text: "Realizar manutenções preventivas e manter o sistema de injeção e ignição regulados.", correct: true },
+        { text: "Remover o catalisador do escapamento para melhorar o ronco.", correct: false },
+        { text: "Acelerar bruscamente em marchas reduzidas.", correct: false }
+      ],
+      explanation: "Manutenção em dia (filtros limpos, velas novas e injeção ajustada) garante que a queima do combustível seja eficiente e menos poluente."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "A 'força centrífuga' é uma lei da física que atua sobre o veículo em movimento. Sua ação tende a:",
+      options: [
+        { text: "Jogar o veículo para fora da curva.", correct: true },
+        { text: "Puxar o veículo para o centro da curva.", correct: false },
+        { text: "Travar as rodas dianteiras durante a frenagem.", correct: false },
+        { text: "Aumentar a aderência dos pneus com o asfalto seco.", correct: false }
+      ],
+      explanation: "A força centrífuga empurra o veículo para o lado externo (fora) da curva. Para contrapô-la, deve-se reduzir a velocidade antes de entrar na curva."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "Os amortecedores e molas do veículo fazem parte do sistema de:",
+      options: [
+        { text: "Transmissão.", correct: false },
+        { text: "Suspensão.", correct: true },
+        { text: "Freios.", correct: false },
+        { text: "Direção.", correct: false }
+      ],
+      explanation: "O sistema de suspensão (amortecedores, molas e pivôs) absorve os impactos do solo e mantém os pneus em contato constante com a pista."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Se a vítima de um acidente de trânsito apresentar queimaduras de segundo grau na pele, o procedimento correto é:",
+      options: [
+        { text: "Aplicar manteiga, creme dental ou pomadas caseiras no local.", correct: false },
+        { text: "Lavar o local apenas com água corrente limpa ou soro fisiológico e cobrir com gaze limpa.", correct: true },
+        { text: "Furar as bolhas que se formarem para aliviar a pressão.", correct: false },
+        { text: "Arrancar as roupas grudadas sobre a área queimada.", correct: false }
+      ],
+      explanation: "Queimaduras devem ser resfriadas com água limpa corrente. Nunca aplique receitas caseiras nem fure bolhas, pois há alto risco de infecção."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "A atitude do condutor que cede a passagem a um pedestre que já iniciou a travessia na faixa de pedestres demonstra:",
+      options: [
+        { text: "Falta de conhecimento das regras de trânsito.", correct: false },
+        { text: "Respeito à cidadania e à prioridade garantida por lei ao pedestre.", correct: true },
+        { text: "Apenas uma gentileza opcional, sem previsão legal.", correct: false },
+        { text: "Medo excessivo de ser multado por radares fixos.", correct: false }
+      ],
+      explanation: "O pedestre tem prioridade sobre os veículos ao atravessar na faixa. Respeitar essa regra é tanto uma obrigação legal quanto um ato de cidadania."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "Qual deve ser a atitude do motorista ao se deparar com uma pista escorregadia por óleo ou areia?",
+      options: [
+        { text: "Frear bruscamente e virar o volante rapidamente.", correct: false },
+        { text: "Reduzir a velocidade com antecedência, evitando freadas e manobras bruscas.", correct: true },
+        { text: "Acelerar para atravessar o trecho perigoso o mais rápido possível.", correct: false },
+        { text: "Puxar o freio de mão para manter o veículo em linha reta.", correct: false }
+      ],
+      explanation: "Em pistas com baixa aderência, reduza a marcha e a velocidade antes do trecho crítico para evitar perda de controle e derrapagens."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "O filtro de combustível tem como função principal:",
+      options: [
+        { text: "Filtrar a poeira e impurezas do ar que vai para o motor.", correct: false },
+        { text: "Reter as impurezas do combustível antes que cheguem ao sistema de injeção ou carburador.", correct: true },
+        { text: "Separar a água do óleo do motor.", correct: false },
+        { text: "Aumentar a pressão no tanque de combustível.", correct: false }
+      ],
+      explanation: "O filtro de combustível impede que sujeiras presentes no tanque alcancem os bicos injetores ou o carburador, protegendo o sistema de alimentação."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Em caso de suspeita de fratura ou lesão na coluna vertebral de um acidentado, o maior risco de movimentá-lo incorretamente é:",
+      options: [
+        { text: "Causar dor intensa sem maiores consequências.", correct: false },
+        { text: "Provocar lesão na medula espinhal e causar paralisia permanente ou morte.", correct: true },
+        { text: "Aumentar os batimentos cardíacos da vítima.", correct: false },
+        { text: "Provocar hemorragia no estômago.", correct: false }
+      ],
+      explanation: "A medula espinhal passa por dentro da coluna vertebral. Qualquer deslocamento inadequado da vértebra fraturada pode cortar ou lesionar a medula."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "O descarte inadequado do óleo lubrificante usado do motor no solo ou na rede de esgoto provoca:",
+      options: [
+        { text: "Contaminação grave do solo e dos lençóis freáticos.", correct: true },
+        { text: "Melhoria na lubrificação do solo agrícola.", correct: false },
+        { text: "Apenas sujeira visual temporária.", correct: false },
+        { text: "Nenhum impacto ambiental significativo.", correct: false }
+      ],
+      explanation: "1 litro de óleo lubrificante pode contaminar 1 milhão de litros de água. O descarte correto deve ser feito em postos de coleta para reciclagem."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "O conceito de 'automatismo incorreto' na direção defensiva diz respeito a:",
+      options: [
+        { text: "Ações reflexas e vícios adquiridos pelo condutor que colocam a segurança em risco.", correct: true },
+        { text: "Falhas no sistema elétrico do câmbio automático do carro.", correct: false },
+        { text: "Uso de piloto automático em rodovias movimentadas.", correct: false },
+        { text: "Acionamento involuntário dos limpadores de para-brisa.", correct: false }
+      ],
+      explanation: "Automatismo incorreto é o hábito ou vício perigoso praticado sem pensar (ex: dirigir com o pé apoiado na embreagem ou a mão na alavanca de câmbio)."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "Qual instrumento do painel do veículo indica a quantidade de rotações do motor por minuto (RPM)?",
+      options: [
+        { text: "Velocímetro.", correct: false },
+        { text: "Odômetro parcial.", correct: false },
+        { text: "Tacômetro (ou conta-giros).", correct: true },
+        { text: "Termômetro.", correct: false }
+      ],
+      explanation: "O conta-giros (tacômetro) indica a velocidade de rotação do virabrequim do motor em RPM (rotações por minuto)."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "Quando uma vítima de acidente de trânsito está usando capacete, a conduta correta do socorrista leigo é:",
+      options: [
+        { text: "Retirar o capacete imediatamente para facilitar a respiração.", correct: false },
+        { text: "Manter o capacete na cabeça da vítima e aguardar a equipe médica qualificada.", correct: true },
+        { text: "Desabotoar a fivela e puxar o capacete com força lateral.", correct: false },
+        { text: "Girar a cabeça da vítima com o capacete para o lado.", correct: false }
+      ],
+      explanation: "A remoção do capacete exige técnica específica de imobilização cervical. O leigo não deve removê-lo para não causar tetraplegia."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "O Conama (Conselho Nacional do Meio Ambiente) e o Proconve têm como objetivo no trânsito:",
+      options: [
+        { text: "Reduzir os níveis de emissão de poluentes e ruídos por veículos automotores.", correct: true },
+        { text: "Fiscalizar os contratos de financiamento de automóveis.", correct: false },
+        { text: "Aumentar a velocidade máxima permitted nas rodovias.", correct: false },
+        { text: "Definir os preços das multas de trânsito.", correct: false }
+      ],
+      explanation: "O Proconve (Programa de Controle da Poluição do Ar por Veículos Automotores) foi criado pelo CONAMA para estabelecer limites de emissão de poluentes."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "Ao trafegar à noite em uma pista simples de mão dupla sem iluminação pública, qual o farol adequado quando NÃO houver outros veículos à frente ou em sentido contrário?",
+      options: [
+        { text: "Farol baixo.", correct: false },
+        { text: "Farol alto.", correct: true },
+        { text: "Luzes de posição (lanternas).", correct: false },
+        { text: "Pisca-alerta acionado.", correct: false }
+      ],
+      explanation: "Em vias não iluminadas, o uso do farol alto é obrigatório, devendo ser substituído pelo farol baixo ao cruzar com outro veículo ou segui-lo."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "As velas de ignição têm como função principal nos motores a gasolina, etanol e flex:",
+      options: [
+        { text: "Injetar combustível diretamente na câmara de combustão.", correct: false },
+        { text: "Proporcionar a faísca elétrica para inflamar a mistura ar/combustível.", correct: true },
+        { text: "Resfriar os pistões durante o funcionamento.", correct: false },
+        { text: "Descarregar a eletricidade estática da lataria.", correct: false }
+      ],
+      explanation: "A vela de ignição produz a centelha elétrica necessária para detonar a mistura comprimida de ar e combustível dentro do cilindro."
+    },
+    {
+      category: "Primeiros Socorros",
+      question: "O que NÃO se deve fazer ao prestar auxílio a uma vítima que está tendo uma crise convulsiva?",
+      options: [
+        { text: "Proteger a cabeça da vítima contra impactos no chão.", correct: false },
+        { text: "Tentar segurar a língua da vítima ou colocar objetos em sua boca.", correct: true },
+        { text: "Afastar objetos cortantes ou duros ao redor.", correct: false },
+        { text: "Afrouxar roupas apertadas ao redor do pescoço.", correct: false }
+      ],
+      explanation: "Nunca se deve colocar os dedos ou objetos na boca de quem está tendo uma convulsão, pois os músculos da mandíbula se contraem com extrema força."
+    },
+    {
+      category: "Meio Ambiente e Cidadania",
+      question: "O uso indevido da buzina entre 22h e 6h em áreas urbanas é considerado:",
+      options: [
+        { text: "Permitido desde que o som seja fraco.", correct: false },
+        { text: "Infração de trânsito e desrespeito ao sossego público.", correct: true },
+        { text: "Permitido para avisar a abertura de portões.", correct: false },
+        { text: "Apenas falta de educação, sem penalidade.", correct: false }
+      ],
+      explanation: "Usar buzina entre 22h e 6h é infração leve pelo CTB e desrespeita as normas de convivência social e perturbação do sossego."
+    },
+    {
+      category: "Direção Defensiva",
+      question: "Em caso de estouro de pneu com o veículo em velocidade, a reação correta do motorista deve ser:",
+      options: [
+        { text: "Pisar no freio com toda a força imediatamente.", correct: false },
+        { text: "Segurar o volante com firmeza, tirar o pé do acelerador e desacelerar gradativamente até parar em local seguro.", correct: true },
+        { text: "Puxar o freio de mão imediatamente.", correct: false },
+        { text: "Girar o volante para o lado oposto ao pneu estourado.", correct: false }
+      ],
+      explanation: "Frear bruscamente com o pneu estourado faz o carro desgovernar. Deve-se manter o volante firme, desacelerar no motor e frear suavemente."
+    },
+    {
+      category: "Mecânica Básica",
+      question: "A substituição do óleo do motor deve ser feita obedecendo:",
+      options: [
+        { text: "Apenas quando o óleo mudar de cor e ficar bem escuro.", correct: false },
+        { text: "As recomendações de quilometragem ou tempo estipuladas pelo fabricante no manual do veículo.", correct: true },
+        { text: "Apenas quando a luz do painel acender.", correct: false },
+        { text: "Sempre a cada 50.000 quilômetros rodados.", correct: false }
+      ],
+      explanation: "O óleo perde suas propriedades de lubrificação e viscosidade por tempo ou quilometragem rodada, conforme especificado no manual do proprietário."
+    }   
+  ];
+
+  // 3. VARIÁVEIS DE ESTADO
+  let questions = [];
+  let currentQuestionIndex = 0;
+  let score = 0;
+  let answered = false;
+
+  // Variáveis do Timer (60 Minutos = 3600 segundos)
+  const TOTAL_TIME_SECONDS = 60 * 60;
+  let timeRemaining = TOTAL_TIME_SECONDS;
+  let timerInterval = null;
+
+  // 4. FUNÇÕES AUXILIARES
+  function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+    const newArray = JSON.parse(JSON.stringify(array));
+
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [newArray[currentIndex], newArray[randomIndex]] = [newArray[randomIndex], newArray[currentIndex]];
+    }
+    return newArray;
+  }
+
+  // 5. FUNÇÃO PRINCIPAL DE INÍCIO
+  function startQuiz() {
+    clearInterval(timerInterval);
+    timeRemaining = TOTAL_TIME_SECONDS;
+
+    // Gera as questões respeitando as proporções
+    questions = generateProportionalExam(rawQuestions);
+
+    // Embaralha as alternativas (A, B, C, D) de cada questão sorteada
+    questions.forEach(q => {
+      q.options = shuffle(q.options);
+    });
+
+    currentQuestionIndex = 0;
+    score = 0;
+    
+    document.getElementById('quiz-screen').style.display = 'block';
+    document.getElementById('result-screen').style.display = 'none';
+    
+    startTimer();
+    showQuestion();
+  }
+
+  // Lógica do Cronômetro
+  function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+      timeRemaining--;
+      updateTimerDisplay();
+
+      if (timeRemaining <= 0) {
+        clearInterval(timerInterval);
+        timeOutEndQuiz();
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+    
+    const timerElement = document.getElementById('timer');
+    const timerBox = document.getElementById('timer-box');
+    
+    timerElement.innerText = `${formattedMinutes}:${formattedSeconds}`;
+
+    if (timeRemaining <= 300) {
+      timerBox.className = 'timer-box danger';
+    } else if (timeRemaining <= 600) {
+      timerBox.className = 'timer-box warning';
+    } else {
+      timerBox.className = 'timer-box';
+    }
+  }
+
+  function timeOutEndQuiz() {
+    alert("O tempo de 60 minutos expirou! Seu simulado será finalizado automaticamente.");
+    showResults(true);
+  }
+
+  // Renderizar a Questão Atual
+  function showQuestion() {
+    answered = false;
+    const q = questions[currentQuestionIndex];
+
+    document.getElementById('question-counter').innerText = `Questão ${currentQuestionIndex + 1} de ${questions.length}`;
+    document.getElementById('score-counter').innerText = `Acertos: ${score}`;
+    document.getElementById('progress-fill').style.width = `${((currentQuestionIndex) / questions.length) * 100}%`;
+    
+    document.getElementById('tag-category').innerText = q.category;
+
+    let placaHtml = '';
+    if (q.placaId) {
+      placaHtml = `
+        <svg class="placa-preview">
+          <use href="#${q.placaId}"></use>
+        </svg>
+      `;
+    }
+    
+    document.getElementById('question-title').innerHTML = `
+      <span>${currentQuestionIndex + 1}. ${q.question}</span>
+      ${placaHtml}
+    `;
+
+    const feedbackBox = document.getElementById('feedback-box');
+    feedbackBox.className = 'feedback-box';
+    feedbackBox.innerText = '';
+    
+    const nextBtn = document.getElementById('btn-next');
+    nextBtn.style.display = 'none';
+
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+
+    const letters = ['A', 'B', 'C', 'D'];
+
+    q.options.forEach((opt, index) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerHTML = `<strong>${letters[index]})</strong> <span>${opt.text}</span>`;
+      btn.onclick = () => selectOption(btn, opt, q);
+      optionsContainer.appendChild(btn);
+    });
+  }
+
+  // Validação da Resposta
+  function selectOption(selectedBtn, selectedOption, currentQuestion) {
+    if (answered) return;
+    answered = true;
+
+    const allButtons = document.querySelectorAll('.option-btn');
+    allButtons.forEach(btn => btn.disabled = true);
+
+    const feedbackBox = document.getElementById('feedback-box');
+
+    if (selectedOption.correct) {
+      score++;
+      selectedBtn.classList.add('correct');
+      feedbackBox.classList.add('correct');
+      feedbackBox.innerHTML = `<strong>Resposta Correta!</strong><br>${currentQuestion.explanation}`;
+    } else {
+      selectedBtn.classList.add('incorrect');
+      feedbackBox.classList.add('incorrect');
+      
+      allButtons.forEach((btn, idx) => {
+        if (currentQuestion.options[idx].correct) {
+          btn.classList.add('correct');
+        }
+      });
+
+      feedbackBox.innerHTML = `<strong>Resposta Incorreta.</strong><br>${currentQuestion.explanation}`;
+    }
+
+    document.getElementById('score-counter').innerText = `Acertos: ${score}`;
+    
+    const nextBtn = document.getElementById('btn-next');
+    if (currentQuestionIndex === questions.length - 1) {
+      nextBtn.innerText = "Ver Resultado Final";
+    } else {
+      nextBtn.innerText = "Próxima Questão";
+    }
+    nextBtn.style.display = 'block';
+  }
+
+  // Avançar Questão
+  function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion();
+    } else {
+      showResults(false);
+    }
+  }
+
+  // Tela de Resultados
+  function showResults(isTimeOut) {
+    clearInterval(timerInterval);
+
+    document.getElementById('quiz-screen').style.display = 'none';
+    const resultScreen = document.getElementById('result-screen');
+    resultScreen.style.display = 'block';
+
+    const percentage = Math.round((score / questions.length) * 100);
+    const passed = score >= 21;
+
+    const timeSpentSeconds = TOTAL_TIME_SECONDS - timeRemaining;
+    const spentMinutes = Math.floor(timeSpentSeconds / 60);
+    const spentSeconds = timeSpentSeconds % 60;
+    const timeSpentFormatted = `${String(spentMinutes).padStart(2, '0')}:${String(spentSeconds).padStart(2, '0')}`;
+
+    document.getElementById('result-title').innerText = isTimeOut ? "Tempo Esgotado!" : "Resultado do Simulado";
+
+    const scoreBadge = document.getElementById('score-badge');
+    scoreBadge.innerText = `${score} / ${questions.length}`;
+    scoreBadge.className = `score-badge ${passed ? 'status-pass' : 'status-fail'}`;
+
+    const resultStatus = document.getElementById('result-status');
+    resultStatus.innerText = passed ? "APROVADO!" : "REPROVADO";
+    resultStatus.className = passed ? 'status-pass' : 'status-fail';
+
+    document.getElementById('result-details').innerHTML = `
+      Você acertou <strong>${score} de ${questions.length} questões</strong> (${percentage}% de aproveitamento).<br>
+      Tempo utilizado: <strong>${timeSpentFormatted}</strong> (de 60:00 min).<br><br>
+      ${passed 
+        ? 'Parabéns, Thaíse 🚀! Você alcançou o desempenho necessário para passar na prova teórica do DETRAN e vai ser recompensada com uma boa comida 🍔🎁😈.' 
+        : 'Thaíse, você precisa de pelo menos 21 acertos (70%) para ser aprovada 🤔. Vai ser castigada severamente 😎. Continue estudando! 💕'}
+    `;
+  }
+
+  window.onload = startQuiz;
+</script>
+
+</body>
+</html>
