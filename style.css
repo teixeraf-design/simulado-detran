@@ -178,17 +178,18 @@ h1 {
     outline-offset: 2px;
 }
 
-/* Cabeçalho do simulado */
+/* Cabeçalho do simulado: categoria em linha própria, contador e cronômetro dividem a linha de baixo */
 .quiz-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
     margin-bottom: 1rem;
     font-family: var(--font-display);
 }
 
-.progress-info {
+.progress-row {
     display: flex;
+    justify-content: space-between;
     align-items: baseline;
     gap: 0.75rem;
 }
@@ -200,6 +201,7 @@ h1 {
 }
 
 .badge {
+    align-self: flex-start;
     background-color: var(--paper);
     color: var(--road-blue);
     padding: 0.2rem 0.6rem;
@@ -216,6 +218,7 @@ h1 {
     background-color: var(--paper);
     color: var(--ink);
     font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
 }
 
 .timer-badge.warning {
@@ -497,4 +500,5 @@ h1 {
     .card { padding: 1.5rem 1.25rem; }
     .breakdown-row { grid-template-columns: 6.5rem 1fr 2.5rem; }
     .quota-legend { grid-template-columns: 1fr; }
+    .timer-badge { font-size: 1rem; padding: 0.25rem 0.65rem; }
 }
