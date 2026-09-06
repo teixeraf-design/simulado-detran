@@ -182,9 +182,15 @@ function showQuestion() {
 
   questionText.textContent = q.text;
 
-  // Renderização de imagem de placas se houver
+  // Renderização de imagem de placas se houver.
+  // placaId pode ser uma única placa (string) ou múltiplas placas (array).
   if (q.placaId) {
-    imageContainer.innerHTML = `<svg><use href="#${q.placaId}"></use></svg>`;
+    const placaIds = Array.isArray(q.placaId) ? q.placaId : [q.placaId];
+
+    imageContainer.innerHTML = placaIds
+      .map(placaId => `<svg><use href="#${placaId}"></use></svg>`)
+      .join('');
+
     imageContainer.classList.remove('hidden');
   } else {
     imageContainer.classList.add('hidden');

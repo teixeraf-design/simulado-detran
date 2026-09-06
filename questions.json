@@ -3,7 +3,7 @@
     "id": 1,
     "category": "Legislação",
     "text": "Ao ver a placa de “Área Escolar”, o que o motorista deve fazer?",
-    "placaId": "A-33a",
+    "placaId": "A-33A",
     "options": [
       "Acelerar para passar antes do sinal vermelho.",
       "Reduzir a velocidade e redobrar a atenção com crianças e pedestres.",
@@ -437,7 +437,7 @@
     "id": 32,
     "category": "Direção Defensiva",
     "text": "Em curvas indicadas por uma placa como esta acima, por que é importante olhar para o ponto de saída da curva?",
-    "placaId": "A-1b",
+    "placaId": "A-1B",
     "options": [
       "Para observar o retrovisor direito.",
       "Para reduzir o consumo de combustível.",
@@ -451,7 +451,7 @@
     "id": 33,
     "category": "Legislação",
     "text": "Felipe segue pela faixa da direita e encontra a placa acima, seguida de “Fim da proibição de mudar de faixa”. O que isso significa?",
-    "placaId": "R-8b",
+    "placaId": "R-8B",
     "options": [
       "Que só motos podem mudar de faixa.",
       "Que ele pode mudar de faixa a partir da segunda placa.",
@@ -465,7 +465,7 @@
     "id": 34,
     "category": "Legislação",
     "text": "Júlia conduz um ônibus e encontra a placa acima próxima a uma rotatória. Qual é o comportamento correto?",
-    "placaId": "R-5a",
+    "placaId": "R-5A",
     "options": [
       "Fazer o retorno antes da rotatória.",
       "Seguir em frente e utilizar a rotatória para mudar de sentido.",
@@ -535,7 +535,7 @@
     "id": 39,
     "category": "Direção Defensiva",
     "text": "O que indica a placa acima - Cruz de Santo André?",
-    "placaId": "A-41",
+    "placaId": "A-41B",
     "options": [
       "O início de uma passagem de nível, onde a pista cruza com uma linha de trem.",
       "Um cruzamento entre duas vias urbanas.",
@@ -577,7 +577,7 @@
     "id": 42,
     "category": "Direção Defensiva",
     "text": "O que o motorista deve fazer ao ver essa placa?",
-    "placaId": "A-20a",
+    "placaId": "A-20A",
     "options": [
       "Ligar o pisca-alerta.",
       "Acelerar para descer mais rápido.",
@@ -605,7 +605,7 @@
     "id": 44,
     "category": "Legislação",
     "text": "Por que a placa acima é importante em vias urbanas com semáforo?",
-    "placaId": "R-25c",
+    "placaId": "R-25C",
     "options": [
       "Porque indica estacionamento permitido.",
       "Porque ajuda a definir fluxos compatíveis com o tempo semafórico.",
@@ -619,7 +619,7 @@
     "id": 45,
     "category": "Legislação",
     "text": "Qual é a diferença entre a curva indicada pela placa acima à esquerda e a da direita?",
-    "placaId": "A-2a",
+    "placaId": "A-2A",
     "options": [
       "A acima à esquerda indica uma curva menos acentuada.",
       "A acima à esquerda é usada apenas em rotatórias.",
@@ -633,7 +633,10 @@
     "id": 46,
     "category": "Legislação",
     "text": "Qual é a diferença entre a placa “Trânsito de pedestres” e a placa “Passagem sinalizada de pedestres”?",
-    "placaId": "A-32a e A-32b",
+    "placaId": [
+      "A-32A",
+      "A-32B"
+    ],
     "options": [
       "A primeira é obrigatória e a segunda é proibitiva.",
       "A placa indica travessia de ciclistas.",
@@ -647,7 +650,7 @@
     "id": 47,
     "category": "Direção Defensiva",
     "text": "Qual é o principal motivo de sinistros em locais com junções sucessivas contrárias, conforme sinalizado acima?",
-    "placaId": "A-11a",
+    "placaId": "A-11A",
     "options": [
       "Má conservação da pintura da placa.",
       "Defeito no veículo.",
@@ -661,7 +664,7 @@
     "id": 48,
     "category": "Direção Defensiva",
     "text": "Qual o principal erro que causa sinistro em cruzamentos como o da placa?",
-    "placaId": "A-11a",
+    "placaId": "A-11A",
     "options": [
       "Parar para observar o trânsito.",
       "Usar o cinto de segurança.",
@@ -731,7 +734,7 @@
     "id": 53,
     "category": "Legislação",
     "text": "A placa acima obriga o condutor a:",
-    "placaId": "R-25a",
+    "placaId": "R-25A",
     "options": [
       "Virar à esquerda no local indicado.",
       "Virar à direita.",
@@ -745,7 +748,7 @@
     "id": 54,
     "category": "Legislação",
     "text": "A placa acima proíbe o motorista de:",
-    "placaId": "R-4a",
+    "placaId": "R-4A",
     "options": [
       "Fazer conversão à esquerda, inclusive retorno.",
       "Parar o veículo.",
@@ -773,7 +776,7 @@
     "id": 56,
     "category": "Legislação",
     "text": "A principal função da placa acima é:",
-    "placaId": "A-42a",
+    "placaId": "A-42A",
     "options": [
       "Anunciar a presença de curvas perigosas.",
       "Indicar pista escorregadia.",
@@ -801,7 +804,7 @@
     "id": 58,
     "category": "Legislação",
     "text": "André dirige em uma avenida e vê a placa acima. O que deve fazer?",
-    "placaId": "R-8a",
+    "placaId": "R-8A",
     "options": [
       "Ultrapassar pela direita.",
       "Encostar à direita para seguir devagar.",
@@ -857,7 +860,7 @@
     "id": 62,
     "category": "Legislação",
     "text": "Ao encontrar a placa acima, o motorista deve:",
-    "placaId": "R-25a",
+    "placaId": "R-25A",
     "options": [
       "Parar no acostamento.",
       "Virar à direita imediatamente.",
@@ -899,7 +902,7 @@
     "id": 65,
     "category": "Legislação",
     "text": "Ao ver a placa “Proibido Virar à Esquerda”, o motorista deve:",
-    "placaId": "R-4a",
+    "placaId": "R-4A",
     "options": [
       "Seguir em frente ou virar à direita, respeitando a proibição.",
       "Parar o veículo no cruzamento.",
@@ -927,7 +930,7 @@
     "id": 67,
     "category": "Legislação",
     "text": "Ao ver a placa com uma seta preta apontando para baixo e à direita, como a figura acima, o condutor deve entender que:",
-    "placaId": "R-24b",
+    "placaId": "R-24B",
     "options": [
       "É permitido passar por qualquer lado.",
       "Ele deve virar à esquerda.",
@@ -941,7 +944,7 @@
     "id": 68,
     "category": "Legislação",
     "text": "Ao ver esta placa, o motorista deve:",
-    "placaId": "A-32a",
+    "placaId": "A-32A",
     "options": [
       "Aumentar a velocidade.",
       "Reduzir a velocidade e ficar atento à travessia de pessoas.",
@@ -969,7 +972,7 @@
     "id": 70,
     "category": "Legislação",
     "text": "Carla vê a placa acima em uma ponte. Por que ela foi instalada ali?",
-    "placaId": "R-8a",
+    "placaId": "R-8A",
     "options": [
       "Porque é trecho de ultrapassagem.",
       "Porque é área de pedágio.",
@@ -1039,7 +1042,7 @@
     "id": 75,
     "category": "Legislação",
     "text": "Em que locais a placa acima costuma ser instalada?",
-    "placaId": "R-24b",
+    "placaId": "R-24B",
     "options": [
       "Antes de canteiros centrais, ilhas, obras e divisores de pista.",
       "Em estacionamentos subterrâneos.",
@@ -1081,7 +1084,7 @@
     "id": 78,
     "category": "Legislação",
     "text": "Fernanda está em uma via de pista dupla e vê a placa acima. Qual é o significado dessa placa?",
-    "placaId": "R-5a",
+    "placaId": "R-5A",
     "options": [
       "É obrigatório virar à direita.",
       "Indica fim de proibição.",
@@ -1095,7 +1098,7 @@
     "id": 79,
     "category": "Legislação",
     "text": "João para o carro por alguns segundos em frente a essa placa acima para deixar um passageiro. Ele está correto?",
-    "placaId": "R-6c",
+    "placaId": "R-6C",
     "options": [
       "Não, pois a placa proíbe qualquer parada, mesmo rápida.",
       "Sim, se mantiver o pisca-alerta ligado.",
@@ -1109,7 +1112,7 @@
     "id": 80,
     "category": "Legislação",
     "text": "Júlio para seu carro na frente de um portão onde há a placa acima. Qual é a infração cometida?",
-    "placaId": "R-6a",
+    "placaId": "R-6A",
     "options": [
       "Estacionar em local proibido pela sinalização.",
       "Nenhuma infração.",
@@ -1123,7 +1126,7 @@
     "id": 81,
     "category": "Legislação",
     "text": "Lucas conduz seu carro e vê a placa acima junto a uma faixa contínua amarela. O que isso significa?",
-    "placaId": "R-4b",
+    "placaId": "R-4B",
     "options": [
       "É proibido virar à direita e também mudar de faixa naquele trecho.",
       "É uma advertência temporária.",
@@ -1151,7 +1154,7 @@
     "id": 83,
     "category": "Legislação",
     "text": "O formato e as cores da placa “Proibido Virar à Esquerda” indicam que se trata de:",
-    "placaId": "R-4a",
+    "placaId": "R-4A",
     "options": [
       "Uma placa educativa.",
       "Uma placa de regulamentação.",
@@ -1179,7 +1182,7 @@
     "id": 85,
     "category": "Legislação",
     "text": "O que a placa acima indica?",
-    "placaId": "R-25c",
+    "placaId": "R-25C",
     "options": [
       "O condutor deve parar.",
       "O condutor deve seguir em frente ou virar à esquerda.",
@@ -1207,7 +1210,7 @@
     "id": 87,
     "category": "Legislação",
     "text": "O que a placa acima pretende evitar?",
-    "placaId": "R-25a",
+    "placaId": "R-25A",
     "options": [
       "Conversões à direita.",
       "Conflitos de tráfego e acidentes em cruzamentos.",
@@ -1249,7 +1252,7 @@
     "id": 90,
     "category": "Direção Defensiva",
     "text": "O que essa placa está avisando?",
-    "placaId": "A-11a",
+    "placaId": "A-11A",
     "options": [
       "Que é proibido virar à esquerda.",
       "Que há duas entradas ou saídas próximas, uma à esquerda e outra à direita.",
@@ -1277,7 +1280,7 @@
     "id": 92,
     "category": "Direção Defensiva",
     "text": "O que essa placa está avisando?",
-    "placaId": "A-7a",
+    "placaId": "A-7A",
     "options": [
       "Que há uma via entrando pela esquerda.",
       "Que a pista é de mão dupla.",
@@ -1319,7 +1322,7 @@
     "id": 95,
     "category": "Direção Defensiva",
     "text": "O que essa placa indica ao condutor?",
-    "placaId": "A-20b",
+    "placaId": "A-20B",
     "options": [
       "Que há uma lombada.",
       "Que há uma subida forte à frente.",
@@ -1375,7 +1378,7 @@
     "id": 99,
     "category": "Direção Defensiva",
     "text": "O que essa placa quer dizer para o motorista?",
-    "placaId": "A-3a",
+    "placaId": "A-3A",
     "options": [
       "Que deve virar à esquerda logo.",
       "Que a estrada tem várias curvas, começando para a esquerda.",
@@ -1389,7 +1392,7 @@
     "id": 100,
     "category": "Direção Defensiva",
     "text": "O que essa placa quer dizer?",
-    "placaId": "A-20a",
+    "placaId": "A-20A",
     "options": [
       "Que há uma descida forte à frente.",
       "Que há uma subida acentuada.",
@@ -1417,7 +1420,7 @@
     "id": 102,
     "category": "Legislação",
     "text": "O que esta placa indica?",
-    "placaId": "A-32a",
+    "placaId": "A-32A",
     "options": [
       "Que há pedestres circulando ou atravessando a via.",
       "Que é uma estrada rural.",
@@ -1445,7 +1448,7 @@
     "id": 104,
     "category": "Legislação",
     "text": "O que indica a placa acima?",
-    "placaId": "R-25d",
+    "placaId": "R-25D",
     "options": [
       "O condutor deve virar à esquerda.",
       "É proibido estacionar.",
@@ -1515,7 +1518,7 @@
     "id": 109,
     "category": "Legislação",
     "text": "O que indica a placa acima?",
-    "placaId": "A-42a",
+    "placaId": "A-42A",
     "options": [
       "Que o trânsito será interrompido.",
       "Que a via terá apenas uma faixa estreita.",
@@ -1529,7 +1532,7 @@
     "id": 110,
     "category": "Legislação",
     "text": "O que indica a placa acima?",
-    "placaId": "A-42c",
+    "placaId": "A-42C",
     "options": [
       "Que há um desvio temporário.",
       "Que a via passará a ter separação física dividindo os fluxos de mesmo sentido de circulação.",
@@ -1557,7 +1560,7 @@
     "id": 112,
     "category": "Legislação",
     "text": "O que indica a placa acima?",
-    "placaId": "A-42b",
+    "placaId": "A-42B",
     "options": [
       "Que a via voltará a ter mão dupla, sem separação física entre os sentidos.",
       "Que há início de túnel.",
@@ -1627,7 +1630,7 @@
     "id": 117,
     "category": "Legislação",
     "text": "O que indica a placa acima?",
-    "placaId": "A-2b",
+    "placaId": "A-2B",
     "options": [
       "Que há uma curva acentuada à esquerda.",
       "Que há uma interseção em “T”.",
@@ -1641,7 +1644,7 @@
     "id": 118,
     "category": "Legislação",
     "text": "O que indica a placa acima?",
-    "placaId": "A-1a",
+    "placaId": "A-1A",
     "options": [
       "Que é permitido o retorno.",
       "Que há uma curva acentuada à esquerda à frente.",
@@ -1697,7 +1700,7 @@
     "id": 122,
     "category": "Legislação",
     "text": "O que indica a placa acima?",
-    "placaId": "R-35",
+    "placaId": "R-35B",
     "options": [
       "Que os pedestres devem circular à esquerda e os ciclistas à direita.",
       "Que o trânsito é proibido para bicicletas.",
@@ -1823,7 +1826,7 @@
     "id": 131,
     "category": "Legislação",
     "text": "Paulo conduz seu carro e encontra a placa acima. O que ele deve fazer?",
-    "placaId": "R-24a",
+    "placaId": "R-24A",
     "options": [
       "Fazer retorno.",
       "Seguir obrigatoriamente à direita.",
@@ -1851,7 +1854,7 @@
     "id": 133,
     "category": "Legislação",
     "text": "Paulo dirige pela Avenida Brasil e encontra a placa acima. O que ele deve fazer?",
-    "placaId": "R-5a",
+    "placaId": "R-5A",
     "options": [
       "Seguir em frente até o próximo ponto permitido para retorno.",
       "Parar no meio da via e aguardar espaço.",
@@ -1893,7 +1896,7 @@
     "id": 136,
     "category": "Legislação",
     "text": "Por que a placa acima é essencial em cruzamentos de mão única?",
-    "placaId": "R-25b",
+    "placaId": "R-25B",
     "options": [
       "Para indicar quebra-molas.",
       "Para evitar que condutores entrem na contramão.",
@@ -1977,7 +1980,7 @@
     "id": 142,
     "category": "Direção Defensiva",
     "text": "Por que essa placa é importante em rodovias e serras?",
-    "placaId": "A-4b",
+    "placaId": "A-4B",
     "options": [
       "Porque mostra um ponto de ultrapassagem.",
       "Porque indica local de pedágio.",
@@ -2019,7 +2022,7 @@
     "id": 145,
     "category": "Direção Defensiva",
     "text": "Qual deve ser a atitude do condutor ao visualizar a placa acima?",
-    "placaId": "A-1a",
+    "placaId": "A-1A",
     "options": [
       "Aumentar a velocidade para sair rápido da curva.",
       "Reduzir a velocidade e posicionar o veículo mais à direita da faixa.",
@@ -2131,7 +2134,7 @@
     "id": 153,
     "category": "Direção Defensiva",
     "text": "Qual é a conduta segura ao se aproximar da placa acima?",
-    "placaId": "A-2b",
+    "placaId": "A-2B",
     "options": [
       "Acelerar antes da curva.",
       "Frear bruscamente dentro da curva.",
@@ -2145,7 +2148,7 @@
     "id": 154,
     "category": "Legislação",
     "text": "Qual é a função principal da placa acima?",
-    "placaId": "A-42c",
+    "placaId": "A-42C",
     "options": [
       "Advertir sobre o início de divisão física da pista.",
       "Avisar sobre pedágio.",
@@ -2187,7 +2190,7 @@
     "id": 157,
     "category": "Direção Defensiva",
     "text": "Qual é o principal risco ao ignorar a placa acima?",
-    "placaId": "A-42b",
+    "placaId": "A-42B",
     "options": [
       "Estouro de pneu.",
       "Pane elétrica.",
@@ -2215,7 +2218,7 @@
     "id": 159,
     "category": "Direção Defensiva",
     "text": "Qual é o risco principal em curvas seguidas como indicado na placa acima?",
-    "placaId": "A-5a",
+    "placaId": "A-5A",
     "options": [
       "O consumo de combustível aumentar.",
       "O carro desligar o motor.",
@@ -2229,7 +2232,7 @@
     "id": 160,
     "category": "Legislação",
     "text": "Qual manobra é proibida na presença dessa placa?",
-    "placaId": "R-25d",
+    "placaId": "R-25D",
     "options": [
       "Parar na via.",
       "Seguir em frente.",
@@ -2243,7 +2246,7 @@
     "id": 161,
     "category": "Legislação",
     "text": "Qual manobra é proibida onde há a placa acima?",
-    "placaId": "R-25c",
+    "placaId": "R-25C",
     "options": [
       "Parar o veículo.",
       "Virar à direita.",
@@ -2257,7 +2260,7 @@
     "id": 162,
     "category": "Legislação",
     "text": "Qual o objetivo principal da placa acima?",
-    "placaId": "R-24a",
+    "placaId": "R-24A",
     "options": [
       "Avisar sobre obras na pista.",
       "Indicar pedágio.",
@@ -2285,7 +2288,7 @@
     "id": 164,
     "category": "Legislação",
     "text": "Qual o principal objetivo da placa acima?",
-    "placaId": "R-35",
+    "placaId": "R-35B",
     "options": [
       "Alertar para curva acentuada.",
       "Indicar um ponto de parada de ônibus.",
@@ -2327,7 +2330,7 @@
     "id": 167,
     "category": "Legislação",
     "text": "Quando o condutor encontra essa placa, ele deve:",
-    "placaId": "R-25b",
+    "placaId": "R-25B",
     "options": [
       "Virar à esquerda.",
       "Seguir em frente.",
@@ -2369,7 +2372,7 @@
     "id": 170,
     "category": "Legislação",
     "text": "Rita estaciona seu carro em uma vaga sinalizada com a placa acima e uma placa auxiliar “1 hora – rotativo”. O que ela deve fazer?",
-    "placaId": "R-6b",
+    "placaId": "R-6B",
     "options": [
       "Permanecer no local por, no máximo, 1 hora.",
       "Estacionar o dia todo, se houver vaga.",
@@ -2397,7 +2400,7 @@
     "id": 172,
     "category": "Legislação",
     "text": "Rogério dirige em uma avenida movimentada e vê a placa acima. Ele deseja voltar no sentido contrário. O que deve fazer?",
-    "placaId": "R-5a",
+    "placaId": "R-5A",
     "options": [
       "Parar no canteiro central e aguardar oportunidade.",
       "Dar ré até o cruzamento anterior.",
@@ -2453,7 +2456,7 @@
     "id": 176,
     "category": "Direção Defensiva",
     "text": "Ao entrar em uma curva indicada pela placa acima, com excesso de velocidade, o veículo tende a:",
-    "placaId": "A-2b",
+    "placaId": "A-2B",
     "options": [
       "Fazer a curva com mais facilidade.",
       "Reduzir automaticamente a tração.",
@@ -2467,7 +2470,7 @@
     "id": 177,
     "category": "Legislação",
     "text": "Beatriz estaciona rapidamente com o pisca-alerta ligado em local com a placa acima. Essa ação é permitida?",
-    "placaId": "R-6a",
+    "placaId": "R-6A",
     "options": [
       "Não, pois o pisca-alerta não autoriza desrespeitar a proibição.",
       "Sim, desde que permaneça dentro do carro.",
@@ -2481,7 +2484,7 @@
     "id": 178,
     "category": "Legislação",
     "text": "Bruno deseja deixar um passageiro em local com a placa acima. O que ele deve fazer?",
-    "placaId": "R-6c",
+    "placaId": "R-6C",
     "options": [
       "Reduzir e parar sobre a calçada.",
       "Parar rapidamente e liberar o passageiro.",
@@ -2523,7 +2526,7 @@
     "id": 181,
     "category": "Legislação",
     "text": "César vê a placa acima junto de outra com o texto “Exceto veículos de emergência”. O que isso significa?",
-    "placaId": "R-5b",
+    "placaId": "R-5B",
     "options": [
       "A placa está desativada.",
       "Todos os veículos podem retornar.",
@@ -2551,7 +2554,7 @@
     "id": 183,
     "category": "Legislação",
     "text": "Eduardo estaciona seu carro sobre uma calçada com a placa acima próxima. O que diz a lei?",
-    "placaId": "R-6a",
+    "placaId": "R-6A",
     "options": [
       "É permitido se não atrapalhar pedestres.",
       "Só é proibido se houver sinalização vertical.",
@@ -2565,7 +2568,7 @@
     "id": 184,
     "category": "Direção Defensiva",
     "text": "Em pista molhada, qual é a conduta segura ao encontrar essa sinalização?",
-    "placaId": "A-1a",
+    "placaId": "A-1A",
     "options": [
       "Manter a velocidade e frear com força no meio da curva.",
       "Utilizar apenas o freio de mão.",
@@ -2635,7 +2638,7 @@
     "id": 189,
     "category": "Legislação",
     "text": "Juliana vê a placa acima acompanhada de outra placa logo abaixo com a inscrição “Exceto ônibus”. O que isso significa?",
-    "placaId": "R-4b",
+    "placaId": "R-4B",
     "options": [
       "Apenas os ônibus podem realizar a conversão.",
       "Todos os veículos estão liberados.",
@@ -2691,7 +2694,7 @@
     "id": 193,
     "category": "Legislação",
     "text": "Marina está em local com a placa acima acompanhada de uma placa auxiliar “Das 7h às 19h”. Às 21h, ela estaciona. Está correta?",
-    "placaId": "R-6a",
+    "placaId": "R-6A",
     "options": [
       "Apenas se for moradora da rua.",
       "Não, a proibição é para 24 horas.",
@@ -2733,7 +2736,7 @@
     "id": 196,
     "category": "Legislação",
     "text": "O que a placa acima e a placa de sentido de circulação pela esquerda têm em comum?",
-    "placaId": "R-25b",
+    "placaId": "R-25B",
     "options": [
       "Ambas liberam estacionamento.",
       "Ambas indicam perigo de curva.",
@@ -2761,7 +2764,7 @@
     "id": 198,
     "category": "Legislação",
     "text": "O que o pedestre deve fazer ao ver essa placa acima?",
-    "placaId": "R-35",
+    "placaId": "R-35B",
     "options": [
       "Caminhar em qualquer sentido.",
       "Andar livremente pela faixa de ciclista.",
@@ -2775,7 +2778,7 @@
     "id": 199,
     "category": "Direção Defensiva",
     "text": "O que representa o comportamento seguro ao ver esta placa?",
-    "placaId": "A-32a",
+    "placaId": "A-32A",
     "options": [
       "Atenção redobrada, velocidade reduzida e empatia com quem atravessa.",
       "Pressa e buzina.",
@@ -2817,7 +2820,7 @@
     "id": 202,
     "category": "Legislação",
     "text": "Por que a placa acima é fundamental em rodovias de pista simples com ilhas de refúgio?",
-    "placaId": "R-24b",
+    "placaId": "R-24B",
     "options": [
       "Porque impede que veículos invadam a faixa contrária durante o contorno.",
       "Porque indica estacionamento.",
@@ -2901,7 +2904,7 @@
     "id": 208,
     "category": "Legislação",
     "text": "Por que é importante respeitar o sentido de circulação indicado pela placa acima em áreas urbanas?",
-    "placaId": "R-24a",
+    "placaId": "R-24A",
     "options": [
       "Porque ajuda a encontrar vagas de estacionamento.",
       "Porque evita conflitos entre fluxos opostos e atropelamentos.",
@@ -2929,7 +2932,7 @@
     "id": 210,
     "category": "Legislação",
     "text": "Por que não se deve ultrapassar em trechos com essa placa?",
-    "placaId": "A-7a",
+    "placaId": "A-7A",
     "options": [
       "Porque o piso sempre é irregular.",
       "Porque o carro pode perder a direção.",
@@ -2943,7 +2946,7 @@
     "id": 211,
     "category": "Legislação",
     "text": "Por que o condutor deve manter distância de segurança em uma curva à direita, conforme indicado pela placa acima?",
-    "placaId": "A-2b",
+    "placaId": "A-2B",
     "options": [
       "Porque o veículo da frente acelera automaticamente.",
       "Porque a visibilidade é reduzida e a trajetória pode se estreitar.",
@@ -3013,7 +3016,7 @@
     "id": 216,
     "category": "Legislação",
     "text": "Qual é o comportamento correto ao encontrar essa placa?",
-    "placaId": "R-25c",
+    "placaId": "R-25C",
     "options": [
       "Parar o veículo antes da placa.",
       "Reduzir a velocidade e escolher entre seguir em frente ou virar à esquerda, sinalizando a manobra.",
@@ -3041,7 +3044,7 @@
     "id": 218,
     "category": "Legislação",
     "text": "Qual o erro mais comum cometido por condutores em curvas acentuadas como a indicada pela placa acima?",
-    "placaId": "A-1b",
+    "placaId": "A-1B",
     "options": [
       "Ligar o farol alto.",
       "Acionar o limpador de para-brisa.",
@@ -3139,7 +3142,7 @@
     "id": 225,
     "category": "Legislação",
     "text": "Renata vê a placa acima próxima à entrada de um túnel. Por que a manobra é proibida nesse local?",
-    "placaId": "R-8b",
+    "placaId": "R-8B",
     "options": [
       "Porque o piso é de concreto.",
       "Porque há radar de velocidade.",
@@ -3153,7 +3156,7 @@
     "id": 226,
     "category": "Legislação",
     "text": "Ricardo dirige à noite e percebe a placa acima próxima a uma saída de túnel. Qual é o motivo da proibição?",
-    "placaId": "R-8a",
+    "placaId": "R-8A",
     "options": [
       "Indicar local de fiscalização eletrônica.",
       "Indicar fim de pista dupla.",
@@ -3167,7 +3170,7 @@
     "id": 227,
     "category": "Legislação",
     "text": "Ricardo trafega à noite e vê a placa acima em um trecho de pista simples. O que deve fazer?",
-    "placaId": "R-5a",
+    "placaId": "R-5A",
     "options": [
       "Continuar no sentido da via e só retornar onde for permitido.",
       "Fazer o retorno com farol alto.",
@@ -3195,7 +3198,7 @@
     "id": 229,
     "category": "Legislação",
     "text": "Tiago encontra a placa acima acompanhada da inscrição “Exceto táxi”. O que isso significa?",
-    "placaId": "R-6a",
+    "placaId": "R-6A",
     "options": [
       "Apenas táxis estão proibidos.",
       "O estacionamento é livre à noite.",
@@ -13723,7 +13726,7 @@
     "id": 981,
     "category": "Direção Defensiva",
     "text": "Quando o pedestre inicia a travessia, o motorista deve:",
-    "placaId": "A-32a",
+    "placaId": "A-32A",
     "options": [
       "Buzinar para apressar a travessia.",
       "Passar rápido antes que ele termine.",
@@ -18847,7 +18850,7 @@
     "id": 1347,
     "category": "Mecânica Básica",
     "text": "Ao ver uma placa amarela indicando 'Aclive acentuado', qual é a recomendação para um motorista de carro manual?",
-    "placaId": "A-20b",
+    "placaId": "A-20B",
     "options": [
       "Manter a marcha mais alta possível para economizar combustível.",
       "Reduzir a marcha antes de iniciar a subida para não perder força.",
@@ -19323,7 +19326,7 @@
     "id": 1381,
     "category": "Legislação",
     "text": "Você está dirigindo e vê uma placa de regulamentação com o símbolo de um 'E' cortado por uma faixa vermelha. O que essa placa permite?",
-    "placaId": "R-6a",
+    "placaId": "R-6A",
     "options": [
       "Indica que o estacionamento é exclusivo para um determinado tipo de veículo.",
       "Não permite nenhuma forma de imobilização do veículo, nem mesmo por um instante.",
@@ -19337,7 +19340,7 @@
     "id": 1382,
     "category": "Legislação",
     "text": "Você vê uma placa amarela com o desenho de pessoa atravessando. O que ela significa?",
-    "placaId": "A-32b",
+    "placaId": "A-32B",
     "options": [
       "Indica que não há pedestres na área.",
       "Faixa de pedestres, respeite a prioridade.",
